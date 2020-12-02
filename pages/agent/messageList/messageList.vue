@@ -8,7 +8,7 @@
 					<view class="newRepair-fl">
 						<view>修理厂名称：{{item.c_nickname}}</view>
 						<view>联系电话：{{item.c_tel}}</view>
-						<view>备用电话：{{item.c_tel1}}</view>
+						<!-- <view>备用电话：{{item.c_tel1}}</view> -->
 						<view>详细地址：{{item.c_prov + item.c_city + item.c_address}}</view>
 					</view>
 					<button type="primary" class="newRepair-fr" @click="reply(item)">查看</button>

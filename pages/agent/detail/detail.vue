@@ -66,15 +66,17 @@
 				<view class="detail-info">{{detInfo.i_note}}</view>
 			</view>
 			<view class="detail-cont">
-				<view class="detail-title">
-					商品信息
-				</view>
+				<view class="detail-title">商品信息</view>
 				<!-- <view class="detail-info">
 					型号：{{detInfo.productmodel}}
 				</view>
 				<view class="detail-info">
 					适用范围：{{detInfo.suitable}}
 				</view> -->
+			</view>
+			<view class="detail-cont">
+				<text>品牌：</text>
+				<text>{{detInfo.suitable}}</text>
 			</view>
 			<!-- <view class="detail-cont">
 				<view class="detail-title">

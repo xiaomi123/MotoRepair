@@ -17,6 +17,7 @@
 		<view class="index-search" style="top:0">
 			<view class="index-search-cont">
 				<!-- <button class="index-search-btn" @click="filter()">机型目录</button> -->
+				<button class="index-search-btn">品牌目录</button>
 				<view class="search-input-box">
 					<input class="index-search-txt" confirm-type="search" v-model="keywords" placeholder="请输入产品名/型号"  @confirm="search" />
 					<button class="index-search-btn s-btn" @click="search()">搜索</button>
@@ -126,9 +127,8 @@
 				</uni-grid-item>
 			</uni-grid>
 		</view> -->
-		<view class="am-text-center uinn">--产品列表--</view>
 		<view class="index-content">
-			<!-- <view class="ub f28 shopList">
+			<view class="ub f28 shopList">
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(0);">
 					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
 					<text :style="{color: isShow == 0 ? '#3079F3' : '#333333'}">在售机型</text>
@@ -137,7 +137,7 @@
 					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
 					<text :style="{color: isShow == 1 ? '#3079F3' : '#333333'}">预售机型</text>
 				</view>
-			</view> -->
+			</view>
 			<view class="index-product" v-if="isShow == 0">
 				<view class="index-list" v-for="(item,index) in proList" @click="toDetail(item)">
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
@@ -287,7 +287,7 @@
 					this_.userInfo = res.data[0];
 					if(this_.userInfo.c_level == 1){
 						//this_.roleTxt = "成为我们的直营店用户";
-						this_.roleTxt = this_.userInfo.c_ma002 + "为江陵动力发动机直营店店长";
+						this_.roleTxt = this_.userInfo.c_ma002 + "为江陵动力大合采配送服务商";
 						if(this_.userInfo.c_admin == 1){
 							this_.menuList.splice(1,0,{
 								url : '../../../static/images/booking.png',
@@ -306,18 +306,19 @@
 							this_.tabNum = 4;
 						}
 						
-					}else if(this_.userInfo.c_level == 2){
-						//this_.roleTxt = "成为我们的经销商用户";
-						this_.roleTxt = "成为江陵动力发动机" + this_.userInfo.c_prov + this_.userInfo.c_city + "经销商";
-
-						this_.menuList.splice(2,0,{
-							url : '../../../static/images/icon_db.png',
-							text : '查看调拨',
-							linkUrl:'../allotList02/allotList02?id=0',
-							badge : '',
-							type: "error"
-						});
 					}
+					// else if(this_.userInfo.c_level == 2){
+					// 	//this_.roleTxt = "成为我们的经销商用户";
+					// 	this_.roleTxt = "成为江陵动力大合采" + this_.userInfo.c_prov + this_.userInfo.c_city + "经销商";
+
+					// 	this_.menuList.splice(2,0,{
+					// 		url : '../../../static/images/icon_db.png',
+					// 		text : '查看调拨',
+					// 		linkUrl:'../allotList02/allotList02?id=0',
+					// 		badge : '',
+					// 		type: "error"
+					// 	});
+					// }
 					//补录信息回显
 					if(!this_.$check.isEmpty(this_.userInfo.c_nickname)){
 						this_.agentInfo.c_nickname = this_.userInfo.c_nickname;

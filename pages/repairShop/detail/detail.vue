@@ -77,6 +77,10 @@
 					适用范围：{{detInfo.suitable}}
 				</view> -->
 			</view>
+			<view class="detail-cont">
+				<text>品牌：</text>
+				<text>{{detInfo.suitable}}</text>
+			</view>
 			<!-- <view class="detail-cont">
 				<view class="detail-title">
 					适用车型对照表

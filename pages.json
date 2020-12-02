@@ -135,15 +135,15 @@
 		,{
 		    "path" : "pages/agent/customer/customer",
 		    "style" : {
-				"navigationBarTitleText": "客户列表",
-				"app-plus":{
-					"titleNView":{
-						"buttons":[{
-							"text" : "筛选客户",
-							"fontSize":"14px"
-						}]
-					}
-				}
+				"navigationBarTitleText": "客户列表"
+				// "app-plus":{
+				// 	"titleNView":{
+				// 		"buttons":[{
+				// 			"text" : "筛选客户",
+				// 			"fontSize":"14px"
+				// 		}]
+				// 	}
+				// }
 			}
 		}
 		,{

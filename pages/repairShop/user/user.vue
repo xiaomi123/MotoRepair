@@ -128,12 +128,12 @@
 					id:-1
 				}],
 				manageList:[
-					{
-						url : '../../../static/images/xuyuanchi.png',
-						text : '收藏',
-						badge : '',
-						linkUrl:'../collect/collect'
-					},
+					// {
+					// 	url : '../../../static/images/xuyuanchi.png',
+					// 	text : '收藏',
+					// 	badge : '',
+					// 	linkUrl:'../collect/collect'
+					// },
 					{
 						url : '../../../static/images/icon_pj.png',
 						text : '评价',

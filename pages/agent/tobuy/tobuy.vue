@@ -68,7 +68,8 @@
 						<view class="">
 							<text class="custpro-title">{{item.title}}</text>
 							<view>
-								售价:<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text>进价:{{item.inprice}}
+								<!-- 售价:<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text> -->
+								进价:<text class="am-text-danger">￥</text><text class="index-price">{{item.inprice}}</text>
 							</view>
 							<view>我的库存:{{item.storemin}}</view>
 						</view>
@@ -111,7 +112,8 @@
 						<view class="">
 							<text class="custpro-title">{{item01.title}}</text>
 							<view>
-								售价:<text class="am-text-danger">￥</text><text class="index-price">{{item01.currentprice}}</text>进价:{{item01.inprice}}
+								<!-- 售价:<text class="am-text-danger">￥</text><text class="index-price">{{item01.currentprice}}</text>进价:{{item01.inprice}} -->
+								进价:<text class="am-text-danger">￥</text><text class="index-price">{{item01.inprice}}</text>
 							</view>
 							<view>我的库存:{{item01.storemin}}</view>
 						</view>

@@ -10,6 +10,7 @@
 		<view class="index-search" style="top:0">
 			<view class="index-search-cont">
 				<!-- <button class="index-search-btn" @click="filter()">机型目录</button> -->
+				<button class="index-search-btn">品牌目录</button>
 				<view class="search-input-box">
 					<input class="index-search-txt" confirm-type="search" v-model="keywords" placeholder="请输入产品名/型号"  @confirm="search" />
 					<button class="index-search-btn s-btn" @click="search()">搜索</button>
@@ -34,10 +35,10 @@
 					<text class="login-txt">联系电话</text>
 					<input class="uni-input login-input" :disabled="userInfo.isfirst == 0" v-model="agentInfo.c_tel" placeholder="请录入联系电话" />
 				</view>
-				<view class="login-list">
+				<!-- <view class="login-list">
 					<text class="login-txt">备用电话</text>
 					<input class="uni-input login-input" :disabled="userInfo.isfirst == 0" v-model="agentInfo.c_tel1" placeholder="请录入备用电话" />
-				</view>
+				</view> -->
 				<view class="login-list02" v-show="!isDealer">
 					<view class="login-list02-content">
 						<view class="login-list">
@@ -67,7 +68,7 @@
 					
 				</view>
 				<viwe style="display:block;margin-bottom: 15rpx;color: red;">(示例：xx县&nbsp;&nbsp;xx乡/镇&nbsp;&nbsp;xx街道)</viwe>
-				<!-- <view class="login-list" v-show="!isDealer">
+				<view class="login-list" v-show="!isDealer">
 					<text class="login-txt">主修车型</text>
 					<view class="radio-group">
 						<radio-group @change="radioChange">
@@ -78,7 +79,7 @@
 							</view>
 						</radio-group>
 					</view>
-				</view> -->
+				</view>
 				<!--<button type="primary" class="login-dialog-btn" @click="submitInfo()"  :disabled="userInfo.isfirst == 0">提交</button>-->
 				<!-- userInfo.isfirst 1是首次登陆 0是非首次登陆 -->
 				<p style="text-align: center; color: #FF0000;" v-show="userInfo.isfirst == 0">您的信息已提交，正在审核中，请耐心等待，无需重复提交！</p>

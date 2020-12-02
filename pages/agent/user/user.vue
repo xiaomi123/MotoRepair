@@ -52,7 +52,7 @@
 		</view>
 		
 		<!-- 管理 -->
-		<view class="umar-a am-bg-white ub-box-shadow ub-radius umar-b">
+		<!-- <view class="umar-a am-bg-white ub-box-shadow ub-radius umar-b">
 			<view class="am-avg-2">
 				<view class="f30 am-blod am-panel-title ub ub-ac">
 					<view class="ub ub-f1">经销商</view>
@@ -89,7 +89,7 @@
 					</uni-grid>
 				</view>
 			</view>
-		</view>	
+		</view> -->	
 		<!-- 厂商订单 -->
 		<view class="umar-a am-bg-white ub-box-shadow ub-radius umar-b">
 			<view class="f30 am-blod am-panel-title ub ub-ac">
@@ -156,12 +156,12 @@
 				qrcodeText: '',
 				qrcodeSize: 200,
 				qrcodeSrc: '',
-				jihuoPlant : [{
+				jihuoPlant : [/* {
 					url : '../../../static/images/icon_kc.png',
 					text : '库存',
 					badge : '',
 					linkUrl : '../stock/stock?type=0'
-				}],
+				} */],
 				repairList : [{
 					url : '../../../static/images/icon_xlc.png',
 					text : '客户资料',
@@ -246,31 +246,18 @@
 						this_.currentTabIndex = 3;
 						
 						this_.jihuoPlant.splice(2,0,{url : '../../../static/images/icon_jh.png',text : '进货详情',badge : '',linkUrl : '../myorder/myorder'});
-						this_.jihuoPlant.splice(3,0,{url : '../../../static/images/icon_zt.png',text : '在途',badge : '',linkUrl : '../stock/stock?type=1'});
+						//this_.jihuoPlant.splice(3,0,{url : '../../../static/images/icon_zt.png',text : '在途',badge : '',linkUrl : '../stock/stock?type=1'});
 						this_.jihuoPlant.splice(4,0,{url : '../../../static/images/icon_yd.png',text : '预定',badge : '',linkUrl : '../booking/booking'});
 						this_.jihuoPlant.splice(5,0,{url : '../../../static/images/icon_yd.png',text : '已取消',badge : '',linkUrl : '../cancel/cancel'})
 					}
 					this_.qrcodeText = 'http://gao.vocen.cn:8044/#/pages/QRCode?ma001='+ res.data[0].c_ma001 +'&type=1&m_id='+ res.data[0].c_m_id;
-					//判断是否是二级代理商，二级代理商c_level为2
-					// if(this_.userInfo.c_level == '2'){
-					// 	this_.manageList.splice(1,0,{url : '../../../static/images/icon_db.png',text : '调拨明细',badge : '',linkUrl:'../allotList02/allotList02?id=0'});
-					// 	this_.manageList.splice(2,0,{url : '../../../static/images/icon_kc.png',text : '库存',badge : '',linkUrl : '../stock/stock?type=0'});
-					// 	this_.manageList.splice(3,0,{url : '../../../static/images/icon_zt.png',text : '在途',badge : '',linkUrl : '../stock/stock?type=1'});
-					// }else{
-					// 	this_.manageList.splice(1,0,{url : '../../../static/images/icon_jxs.png',text : '经销商',badge : '',linkUrl:'../dealer/dealer'});
-					// 	this_.manageList.splice(2,0,{url : '../../../static/images/icon_db.png',text : '调拨',badge : '',linkUrl:'../allotList/allotList'});
-					// }
 					if(this_.userInfo.c_type == '2' || this_.userInfo.c_type == '3' || this_.userInfo.c_type == '4' || this_.userInfo.c_type == '5'){
 						this_.manageList.splice(1,0,{url : '../../../static/images/icon_db.png',text : '调拨明细',badge : '',linkUrl:'../allotList02/allotList02?id=0'});
-						this_.manageList.splice(2,0,{url : '../../../static/images/icon_kc.png',text : '库存',badge : '',linkUrl : '../stock/stock?type=0'});
+						//this_.manageList.splice(2,0,{url : '../../../static/images/icon_kc.png',text : '库存',badge : '',linkUrl : '../stock/stock?type=0'});
 						this_.manageList.splice(3,0,{url : '../../../static/images/icon_zt.png',text : '在途',badge : '',linkUrl : '../stock/stock?type=1'});
 					}else if(this_.userInfo.c_type == '0'){
 						this_.manageList.splice(1,0,{url : '../../../static/images/icon_jxs.png',text : '经销商',badge : '',linkUrl:'../dealer/dealer?m_type=2'});
 						this_.manageList.splice(2,0,{url : '../../../static/images/icon_db.png',text : '调拨',badge : '',linkUrl:'../allotList/allotList'});
-						// this_.manageList.splice(3,0,{url : '../../../static/images/icon_db.png',text : '镗缸厂',badge : '',linkUrl:'../dealer/dealer?m_type=3'});
-						// this_.manageList.splice(4,0,{url : '../../../static/images/icon_db.png',text : '易损件',badge : '',linkUrl:'../dealer/dealer?m_type=4'});
-						// this_.manageList.splice(5,0,{url : '../../../static/images/icon_db.png',text : '微车批发',badge : '',linkUrl:'../dealer/dealer?m_type=5'});
-						// this_.manageList.splice(6,0,{url : '../../../static/images/icon_db.png',text : '车型件',badge : '',linkUrl:'../dealer/dealer?m_type=6'});
 					}
 				},
 				fail:function(){

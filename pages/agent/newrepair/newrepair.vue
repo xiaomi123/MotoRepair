@@ -10,7 +10,7 @@
 				</view>
 				<view class="login-list">
 					<text class="login-txt">联系电话</text>
-					<input class="uni-input login-input" v-model="agentInfo.c_tel" placeholder="请录入联系电话" />
+					<input class="uni-input login-input" :disabled="true" v-model="agentInfo.c_tel" placeholder="请录入联系电话" />
 				</view>
 				<view class="login-list02">
 					<view class="login-list02-content">
@@ -83,7 +83,7 @@
 								联系电话：
 								<a style="background-color: rgb(48, 121, 243); border-radius: 3rpx; padding: 0 5px; color: #F1F1F1;"><uni-icons type="phone" size="16" color="#FFFFFF"></uni-icons>{{list.c_tel}}</a>
 							</view>
-							<view>备用电话：{{list.c_tel1}}</view>
+							<!-- <view>备用电话：{{list.c_tel1}}</view> -->
 							<view>详细地址：{{list.c_prov + list.c_city + list.c_address}}</view>
 						</view>
 						<button type="primary" class="newRepair-fr" @click="toPass(list,index)" v-if="tabIndex == 0 || tabIndex == 2">审核</button>

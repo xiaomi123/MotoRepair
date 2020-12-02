@@ -4,6 +4,7 @@
 		<view class="index-search" style="top:0">
 			<view class="index-search-cont">
 				<!-- <button class="index-search-btn" @click="filter()">机型目录</button> -->
+				<button class="index-search-btn">品牌目录</button>
 				<view class="search-input-box">
 					<input class="index-search-txt index-search-agent" confirm-type="search" v-model="keywords" placeholder="请输入产品名/型号"  @confirm="search" />
 					<button class="index-search-btn s-btn" @click="search()">搜索</button>
@@ -12,7 +13,7 @@
 		</view>
 		<!-- 搜索内容结束 -->
 		<view class="notice-bar">
-			<uni-notice-bar showIcon="true" :text="'欢迎 '+userInfo.c_nickname+' 成为江陵动力会员'" background-color="#eeeeee" color="#333333"></uni-notice-bar> 
+			<uni-notice-bar showIcon="true" :text="'欢迎 '+userInfo.c_nickname+' 加入江陵动力大合采'" background-color="#eeeeee" color="#333333"></uni-notice-bar> 
 		</view>
 		
 		<!-- 热门机型 -->
@@ -85,7 +86,7 @@
 			</swiper-item>
 		</swiper>
 		<!-- 快捷键 -->
-		<view class="example-body menuList index-content">
+		<!-- <view class="example-body menuList index-content">
 			<uni-grid :column="3" :show-border="false" :square="false" :highlight="false">
 				<uni-grid-item v-if="index < 6" v-for="(item ,index) in menuList" :index="index" :key="index" style="width: 30.5%;">
 					<view class="grid-item-box" @click="commonMenu(item)">
@@ -101,7 +102,8 @@
 					</view>
 				</uni-grid-item>
 			</uni-grid>
-		</view>
+		</view> -->
+		<view class="am-text-center uinn">--产品列表--</view>
 		<view class="index-content">
 			<!-- <view class="ub f28 shopList">
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(0);">
@@ -121,10 +123,10 @@
 						<!-- <view class="index-txt">
 							<text>原车代码:{{item.productmodel}}</text>
 						</view> -->
-						<view class="index-txt"><text>适用车型:{{item.suitable}}</text></view>
-						<view class="">价格：<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text></view>
+						<view class="index-txt"><text>品牌:{{item.suitable}}</text></view>
 						<view class="">会员价：<text class="am-text-danger">￥</text><text class="index-price">{{item.currentpriceb}}</text></view>
-						<view class="">车主价：<text class="am-text-danger">￥</text><text class="index-price">{{item.currentpricec}}</text></view>
+						<view class="">非会员价：<text class="f24 am-text-warning">￥</text><text class="index-price f28 am-text-warning">{{item.currentprice}}</text></view>
+						<view class="">车主价格：<text class="f24 am-text-primary">￥</text><text class="index-price f28 am-text-primary">{{item.currentpricec}}</text></view>
 						<!-- <view class="index_collect ub f28 ub-ac">
 							<text class="ub am-blod am-text-danger" v-if="item.a_id > 0">赠</text>
 							<view class="ub ub-f1 ub-pe">
