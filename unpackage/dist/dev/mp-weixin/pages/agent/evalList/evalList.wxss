@@ -1,0 +1,22 @@
+
+.evalList-date{
+	text-align: left;
+}
+.starActive{
+	color:#ff7f50;
+}
+.iconfont{
+	font-size: 34rpx;
+	margin-right: 8rpx;
+}
+.s_info{
+	padding-bottom: 10rpx;
+	border-bottom: 1px solid #EEEEEE;
+	margin-bottom: 10rpx;
+}
+.reply{
+	background-color: #EEEEEE;
+	border-radius: 10rpx;
+	margin-top: 10rpx;
+}
+

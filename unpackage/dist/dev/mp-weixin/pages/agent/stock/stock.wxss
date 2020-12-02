@@ -1,0 +1,82 @@
+
+.images{
+	height: 180rpx;
+	width: 180rpx;
+}
+.desc{
+	margin-left: 30rpx;
+}
+.size{
+	padding: 25rpx 0;
+}
+.am-list-item{
+	margin: 20rpx 30rpx;
+	border-bottom: 1px solid #eeeeee;
+	padding-bottom: 20rpx;
+}
+.umar-r{
+	margin-right: 15rpx;
+}
+.code-list{
+	width: 100%;
+	background-color: #EEEEEE;
+	padding: 15rpx 30rpx;
+	border-radius: 10rpx;
+}
+.code-list-item{
+	width: 50%;
+	float: left;
+}
+.uinn-t{
+	padding-top: 20rpx;
+}
+.stock-container{
+	padding-bottom:60rpx;
+}
+.booking-btn button{
+	height: 24px;
+	line-height: 24px;
+	font-size: 12px;
+}
+.am-btn-fixed{
+	border-top: 1px solid #CCCCCC;
+}
+.am-btn-fixed .am-btn{
+	height: 42px;
+	font-size: 15px;
+	border-radius:initial;
+	padding: 0 30rpx;
+}
+.zhiding{
+	margin-left: 10rpx;
+	color: #FFFFFF;
+	/* background-color: #d44242; */
+	padding: 0 10rpx;
+	border-radius: 10rpx;
+	font-size: 12px;
+}
+.tiShiWrap{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	display: block;
+	background: rgba(60,60,60,.8);
+	z-index: 2;
+}
+.tiShiWrapCon{
+	border-radius: 10rpx;
+	width: 300rpx;
+	height: 100rpx;
+	line-height: 100rpx;
+	text-align: center;
+	color: #FF0000;
+	position: absolute;
+	font-size: 40rpx;
+	left: 50%;
+	top:50%;
+	margin-left: -150rpx;
+	background-color: #FFFFFF;
+}
+

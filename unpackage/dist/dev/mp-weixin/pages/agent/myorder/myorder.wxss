@@ -1,0 +1,50 @@
+
+.myorder-new uni-button{
+	padding-left:8px;
+	padding-right:8px;
+}
+.umar-r{margin-right: 20rpx;}
+.detail-tr:first-child,.detail-tr:last-child{
+	background-color: #EEEEEE;
+}
+.detail-table{
+	border-left:1px solid #ddd;
+}
+.detail-td{
+	-webkit-box-flex: inherit;
+	-webkit-flex: inherit;
+	flex: inherit;
+	width: 44%;
+	font-size: 24rpx;
+}
+.number{
+	width: 12%;
+}
+.price{
+	width: 22%;
+}
+.td-br{
+	word-break: break-all;
+}
+.icon-del{
+	width: 35rpx;
+	height: 35rpx;
+}
+.umar-rs{
+	margin-right: 8rpx;
+}
+.order_more{
+	padding:4rpx;
+	text-align: center;
+}
+.order_more text.iconfont{
+	display: inline-block;
+	margin-left: 10rpx;
+	font-size: 28rpx;
+}
+.myOrder-uinn{
+	background-color: #6290dc;
+	border-top-right-radius: 16rpx;
+	border-top-left-radius: 16rpx;
+}
+

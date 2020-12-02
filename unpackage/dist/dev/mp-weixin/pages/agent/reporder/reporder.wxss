@@ -1,0 +1,61 @@
+
+.umar-r{margin-right: 20rpx;}
+.detail-tr:first-child,.detail-tr:last-child{
+	background-color: #EEEEEE;
+}
+.detail-table{
+	border-left:1px solid #ddd;
+}
+.detail-td{
+	-webkit-box-flex: inherit;
+	-webkit-flex: inherit;
+	flex: inherit;
+	width: 25%;
+	font-size: 24rpx;
+}
+.number{
+	width: 12%;
+}
+.price{
+	width: 22%;
+}
+.codenum{
+	width: 41%;
+}
+.td-br{
+	word-break: break-all;
+}
+.icon-del{
+	width: 35rpx;
+	height: 35rpx;
+}
+.umar-rs{
+	margin-right: 8rpx;
+}
+.conditionQuery{
+	position: fixed;
+	right: 20rpx;
+	bottom: 30rpx;
+	font-size: 24rpx;
+}
+.uni-common-mt{
+	background: #FFFFFF;
+	padding: 60rpx 60rpx 0 60rpx;
+}
+.search{
+	margin-top: 100rpx;
+	width: 180rpx;
+	display: inline-block;
+}
+.uni-input{
+	height: 32px;
+	font-size: 24rpx;
+	line-height: 36rpx;
+	margin: 20rpx 0;
+	border-bottom: 1px solid #CCCCCC;
+}
+.uinn-a1{
+	padding-left: 26rpx;
+	padding-right: 26rpx;
+}
+

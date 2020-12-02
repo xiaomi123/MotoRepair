@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "预定产品",
+  "usingComponents": {
+    "uni-number-box": "/components/uni-number-box/uni-number-box",
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
+  }
+}

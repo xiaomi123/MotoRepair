@@ -1,0 +1,14 @@
+
+page.data-v-a2858344{
+	background-color: #F8F8F8;
+	font-size: 32rpx;
+}
+.uinn-t.data-v-a2858344{
+	padding-top: 20rpx;
+}
+.am-form .am-form-group.data-v-a2858344{
+	border-bottom: 1px solid #EEEEEE;
+	margin-bottom: 0;
+	border-radius: 0;
+}
+

@@ -1,0 +1,46 @@
+
+.rmcxList{
+	margin-top: 30rpx;
+}
+.grid-item-box {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+}
+.uni-grid-item{
+	margin-right: 2%;
+}
+.rmcxList .uni-grid-item:nth-child(even){
+	margin-right: 0;
+}
+.cx-image{
+	width: 100rpx;
+	display: block;
+}
+.rmcxList .uni-grid-item:nth-child(2n){
+	background-color: #C9D4F0;
+}
+.rmcxList .uni-grid-item:nth-child(2n+1),
+.rmcxList .uni-grid-item:nth-child(3){
+	background-color: #EEEEEE;
+}
+.rmcxList .uni-grid-item{
+	padding: 15rpx;
+	margin-bottom: 15rpx;
+}
+

@@ -1,0 +1,20 @@
+
+.detail-td.data-v-7405f604{
+	border-left: 1px solid #eee;
+}
+.login-list.data-v-7405f604{
+	margin-top: 20rpx;
+}
+uni-button.data-v-7405f604:after{
+	content: none;
+}
+.umar-a.data-v-7405f604{
+	margin: 0 15rpx;
+}
+.cart-cust-btn.data-v-7405f604{
+	bottom: 0;
+}
+.cart-cust-btn .am-btn.data-v-7405f604{
+	padding:15rpx 0;
+}
+

@@ -1,0 +1,8 @@
+
+.order-list-item{
+	padding: 15rpx 20rpx 0;
+}
+.list-item{
+	padding-bottom: 15rpx;
+}
+

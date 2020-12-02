@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "进货",
+  "usingComponents": {
+    "uni-number-box": "/components/uni-number-box/uni-number-box",
+    "tab-bar": "/components/tabBar/tabBar",
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
+  }
+}

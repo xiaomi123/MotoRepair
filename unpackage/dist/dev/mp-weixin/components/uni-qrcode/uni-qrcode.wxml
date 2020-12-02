@@ -1,0 +1,1 @@
+<view><canvas style="{{'width:'+(size+'px')+';'+('height:'+(size+'px')+';')+('opacity:'+('0')+';')}}" id="{{cid}}" canvas-id="{{cid}}"></canvas></view>

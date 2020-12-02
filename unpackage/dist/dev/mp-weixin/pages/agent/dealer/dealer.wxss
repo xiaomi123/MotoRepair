@@ -1,0 +1,33 @@
+
+.umar-r{margin-right: 20rpx;}
+.dealer-main{
+	margin-bottom: 100rpx;
+}
+.detail-tr:first-child{
+	background-color: #EEEEEE;
+}
+.detail-table{
+	border-left:1px solid #ddd;
+}
+.detail-td{
+	-webkit-box-flex: inherit;
+	-webkit-flex: inherit;
+	flex: inherit;
+	width: 33.3333%;
+	font-size: 24rpx;
+}
+.order-uinn1{
+	padding: 8rpx 20rpx;
+}
+.am-bg-active {
+    background-color: #dcdada;
+}
+.dealer-name{
+	padding: 20rpx 0 10rpx 0;
+	border-top-right-radius: 10rpx;
+	border-top-left-radius: 10rpx;
+}
+uni-canvas>canvas{
+	display: none;
+}
+

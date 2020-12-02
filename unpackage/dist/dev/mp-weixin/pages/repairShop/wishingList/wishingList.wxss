@@ -1,0 +1,10 @@
+
+.evalList-list{
+	padding: 3% 4%;
+	border-bottom: 1px solid #EEEEEE;
+}
+.reply-box{
+	background: #eee;
+	padding: 2%;
+}
+

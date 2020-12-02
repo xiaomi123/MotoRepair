@@ -1,0 +1,415 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登陆"
+			}
+		},
+		{
+			"path": "pages/QRCode",
+			"style": {
+				"navigationBarTitleText": "二维码登陆"
+			}
+		},
+		{
+			"path": "pages/agent/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"app-plus":{"titleNView":false}
+			}
+		},
+		{
+			"path": "pages/repairShop/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"app-plus":{"titleNView":false}
+			}
+		},
+		{
+			"path": "pages/repairShop/customerIndex/customerIndex",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"app-plus":{"titleNView":false}
+			}
+		}
+		,{
+			"path": "pages/repairShop/detail/detail",
+			"style": {
+				"navigationBarTitleText": "产品详情"
+			}
+		},
+		{
+			"path": "pages/repairShop/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
+			"path": "pages/repairShop/order/order",
+			"style": {
+				"navigationBarTitleText": "订单列表"
+			}
+		},
+		{
+			"path": "pages/agent/myorder/myorder",
+			"style": {
+				"navigationBarTitleText": "我的订单"
+			}
+		},
+		{
+			"path": "pages/agent/reporder/reporder",
+			"style": {
+				"navigationBarTitleText": "修理厂订单"
+			}
+		},
+		{
+			"path": "pages/agent/detail/detail",
+			"style": {
+				"navigationBarTitleText": "产品详情"
+			}
+		},
+		{
+			"path": "pages/agent/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		}
+	    ,{
+            "path" : "pages/repairShop/user/user",
+            "style" : {}
+        }
+		,{
+		    "path" : "pages/agent/user/user",
+		    "style" : {
+				"navigationBarTitleText": "个人中心"
+			}
+		}
+        ,{
+            "path" : "components/tabBar/tabBar",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/agent/mobile/mobile",
+            "style" : {
+				"navigationBarTitleText": "绑定手机号"
+			}
+        }
+        ,{
+            "path" : "pages/repairShop/auth/auth",
+            "style" : {
+				"navigationBarTitleText": "修理厂信息"
+			}
+        }
+		,{
+		    "path" : "pages/repairShop/evaluate/evaluate",
+		    "style" : {
+				"navigationBarTitleText": "修理厂评价"
+			}
+		}
+		,{
+		    "path" : "pages/repairShop/evalList/evalList",
+		    "style" : {
+				"navigationBarTitleText": "评价列表"
+			}
+		}
+		,{
+		    "path" : "pages/agent/newrepair/newrepair",
+		    "style" : {
+				"navigationBarTitleText": "客户管理"
+			}
+		}
+		,{
+		    "path" : "pages/tourist/index/index",
+		    "style" : {
+				"navigationBarTitleText": "游客首页",
+				"app-plus":{"titleNView":false}
+			}
+		}
+		,{
+		    "path" : "pages/tourist/detail/detail",
+		    "style" : {
+				"navigationBarTitleText": "详情页"
+			}
+		}
+		,{
+		    "path" : "pages/agent/customer/customer",
+		    "style" : {
+				"navigationBarTitleText": "客户列表",
+				"app-plus":{
+					"titleNView":{
+						"buttons":[{
+							"text" : "筛选客户",
+							"fontSize":"14px"
+						}]
+					}
+				}
+			}
+		}
+		,{
+		    "path" : "pages/agent/custpro/custpro",
+		    "style" : {
+				"navigationBarTitleText": "推荐产品"
+			}
+		}
+		,{
+		    "path" : "pages/agent/collect/collect",
+		    "style" : {
+				"navigationBarTitleText": "收藏"
+			}
+		}
+		,{
+		    "path" : "pages/repairShop/collect/collect",
+		    "style" : {
+				"navigationBarTitleText": "收藏"
+			}
+		},
+		{
+		    "path" : "pages/agent/dealer/dealer",
+		    "style" : {
+				"navigationBarTitleText": "经销商"
+			}
+		},
+		{
+		    "path" : "pages/agent/allot/allot",
+		    "style" : {
+				"navigationBarTitleText": "调拨"
+			}
+		},
+		{
+		    "path" : "pages/agent/allotList/allotList",
+		    "style" : {
+				"navigationBarTitleText": "调拨单列表"
+			}
+		},
+		{
+		    "path" : "pages/agent/allotList02/allotList02",
+		    "style" : {
+				"navigationBarTitleText": "调拨单列表"
+			}
+		},
+		{
+		    "path" : "pages/agent/stock/stock",
+		    "style" : {
+				"navigationBarTitleText": "库存"
+			}
+		}
+        ,{
+            "path" : "pages/agent/evalList/evalList",
+            "style" : {
+				"navigationBarTitleText": "评价列表"
+			}
+        }
+        ,{
+            "path" : "pages/repairShop/integral/integral",
+            "style" : {
+				"navigationBarTitleText": "积分明细"
+			}
+        }
+        ,{
+            "path" : "pages/agent/cate/cate",
+            "style" : {
+				"navigationBarTitleText": "目录"
+			}
+        }
+        ,{
+            "path" : "pages/repairShop/cate/cate",
+            "style" : {
+				"navigationBarTitleText": "目录"
+			}
+        }
+		,{
+		    "path" : "pages/tourist/cate/cate",
+		    "style" : {
+				"navigationBarTitleText": "目录"
+			}
+		}
+		,{
+		    "path" : "pages/agent/tobuy/tobuy",
+		    "style" : {
+				"navigationBarTitleText": "进货"
+			}
+		}
+        ,{
+            "path" : "pages/agent/messageList/messageList",
+            "style" : {
+				"navigationBarTitleText": "留言管理"
+			}
+        }
+        ,{
+            "path" : "pages/agent/message/message",
+            "style" : {
+				"navigationBarTitleText": "留言回复"
+			}
+        }
+		,{
+		    "path" : "pages/agent/proList/proList",
+		    "style" : {
+				"navigationBarTitleText": "产品列表"
+			}
+		}
+		,{
+		    "path" : "pages/agent/proList/proListShow",
+		    "style" : {
+				"navigationBarTitleText": "查询结果规格页"
+			}
+		}
+		,{
+		    "path" : "pages/repairShop/proList/proListShow",
+		    "style" : {
+				"navigationBarTitleText": "查询结果规格页"
+			}
+		}
+		,{
+		    "path" : "pages/tourist/proList/proListShow",
+		    "style" : {
+				"navigationBarTitleText": "查询结果规格页"
+			}
+		}
+		,{
+		    "path" : "pages/tourist/proList/byClickProList",
+		    "style" : {
+				"navigationBarTitleText": "查询结果规格页"
+			}
+		}
+		,{
+		    "path" : "pages/agent/proList/byClickProList",
+		    "style" : {
+				"navigationBarTitleText": "查询结果页"
+			}
+		}
+		,{
+		    "path" : "pages/repairShop/proList/byClickProList",
+		    "style" : {
+				"navigationBarTitleText": "查询结果页"
+			}
+		}
+		,{
+		    "path" : "pages/repairShop/proList/proList",
+		    "style" : {
+				"navigationBarTitleText": "产品列表"
+			}
+		}
+		,{
+		    "path" : "pages/tourist/proList/proList",
+		    "style" : {
+				"navigationBarTitleText": "产品列表"
+			}
+		}
+        ,{
+            "path" : "pages/repairShop/wishing/wishing",
+            "style" : {
+				"navigationBarTitleText": "许愿池"
+				// "app-plus":{
+				// 	"titleNView":{
+				// 		"titleAlign" : "right",
+				// 		"buttons": [
+				// 			{
+				// 				"float":"right",
+				// 				"text": "历史愿望",
+				// 				"fontSize": "12px"
+				// 			}  
+				// 		]  
+				// 	}
+				// }
+			}
+        }
+        ,{
+            "path" : "pages/agent/booking/booking",
+            "style" : {
+				"navigationBarTitleText": "预定产品"
+			}
+        }
+        ,{
+            "path" : "pages/agent/hotCart/hotCart",
+            "style" : {
+				"navigationBarTitleText": "热门车系"
+			}
+        }
+        ,{
+            "path" : "pages/repairShop/hotCart/hotCart",
+            "style" : {
+				"navigationBarTitleText": "热门车系"
+			}
+        }
+        ,{
+            "path" : "pages/agent/hotCart/hotCart",
+            "style" : {
+				"navigationBarTitleText": "热门车系"
+			}
+        }
+        ,{
+            "path" : "pages/repairShop/hotCartAll/hotCartAll",
+            "style" : {
+				"navigationBarTitleText": "热门车系"
+			}
+        },{
+            "path" : "pages/agent/hotCartAll/hotCartAll",
+            "style" : {
+				"navigationBarTitleText": "热门车系"
+			}
+        }
+        ,{
+            "path" : "pages/repairShop/wishingList/wishingList",
+            "style" : {
+				"navigationBarTitleText": "历史愿望"
+			}
+        }
+        ,{
+            "path" : "pages/watch/watch",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/agent/cancel/cancel",
+            "style" : {
+				"navigationBarTitleText": "已取消订单"
+			}
+        }
+		,{
+			"path" : "pages/feedBack/complain/complain",
+			"style" : {
+				"navigationBarTitleText": "投诉",
+				"app-plus":{
+					"titleNView":{
+						"buttons":[{
+							"text" : "投诉列表",
+							"fontSize":"12px"
+						}]
+					}
+				}
+			}
+		}
+		,{
+			"path" : "pages/feedBack/complainRecord/complainRecord",
+			"style" : {
+				"navigationBarTitleText": "投诉列表",
+				"enablePullDownRefresh":true
+			}
+		}
+		,{
+			"path" : "pages/agent/agreeCustomer/agreeCustomer",
+			"style" :                                                                                    
+			{
+				"navigationBarTitleText": "协议客户",
+				"enablePullDownRefresh": false
+			}
+			
+		}
+		,{
+			"path" : "pages/repairShop/customerIndex/customerIndex",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"app-plus":{"titleNView":false}
+			}
+			
+		}
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "大和采",
+		"navigationBarBackgroundColor": "#3079F3",
+		"backgroundColor": "#F8F8F8",
+		"app-plus":{"titleNView":true}
+	}
+	
+}

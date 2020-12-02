@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "查询结果规格页",
+  "usingComponents": {
+    "uni-tag": "/components/uni-tag/uni-tag",
+    "uni-number-box": "/components/uni-number-box/uni-number-box",
+    "uni-load-more": "/components/uni-load-more/uni-load-more"
+  }
+}

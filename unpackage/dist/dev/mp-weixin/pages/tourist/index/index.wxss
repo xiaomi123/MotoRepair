@@ -1,0 +1,26 @@
+
+.umar-l{
+	margin-left: 10rpx;
+}
+.index-search-txt{
+	width: 70%;
+}
+.index-search-btn{
+	width: 18%;
+}
+.radio-group{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+}
+.radio-item{
+	margin-bottom: 10rpx;
+}
+.login-dialog-cont{
+	font-size: 16rpx;
+}
+

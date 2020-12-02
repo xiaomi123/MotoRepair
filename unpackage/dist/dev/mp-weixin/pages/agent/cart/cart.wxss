@@ -1,0 +1,58 @@
+
+.login-title{
+	padding-bottom: 15rpx;
+	font-size: 32rpx;
+	color: #333333;
+}
+
+
+.tabbar{
+	height: 98rpx;
+	overflow: hidden;
+	width: 100%;
+	position: fixed;
+	bottom:0;
+	left:0;
+	border-top: 1px solid #EEEEEE;
+	z-index: 1010;
+}
+.grid-item-box {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	padding: 0;
+}
+.image{
+	width: 44rpx;
+	height: 44rpx;
+	margin-top: 12rpx;
+}
+.text{
+	font-size: 22rpx;
+	font-family:PingFang SC;
+	padding-top: 4rpx;
+}
+.grid-dot{
+	position: absolute;
+	top: 0;
+	right: 28%;
+}
+.uni-badge{
+	width: 20rpx !important;
+}
+

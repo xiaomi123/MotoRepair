@@ -1,0 +1,328 @@
+<template>
+	<view class="index_container">
+		<!-- 搜索内容开始 -->
+		<!-- <view class="index-search">
+			<view class="index-search-cont">
+				<input class="index-search-txt" style="width: 640rpx" confirm-type="search" v-model="keywords" placeholder="请输入"  @confirm="search" />
+			</view>
+		</view> -->
+		<view class="index-search">
+			<view class="index-search-cont">
+				<view class="search-input-box" style="width: 100%;">
+					<input class="index-search-txt" confirm-type="search" v-model="keywords" placeholder="请输入"  @confirm="search"  />
+					<button class="index-search-btn s-btn" @click="search()">搜索</button>
+				</view>
+			</view>
+		</view>
+		<!-- 搜索内容结束 -->
+		
+		<!-- 原车代码内容开始 -->
+		<view class="example-body" style="padding-top:20rpx" v-show="false" v-if="carCode.length>0">
+			<view class="example-title" v-if="carCode.length>0">原车代码：</view>
+			<view class="example-level" v-show="isCk">
+				<view class="example-level-title">{{ckLevel.s_car_code}}</view>
+				<view v-for="item in ckLevel.s_level2">
+					<view :class="ckLeTxt==item.s_level2?'example-active':''" @click="levelSel(item,'2')">{{item.s_level2}}</view>
+					<view v-for="list in item.s_level3">
+						<view :class="ckLeTxt==list.s_level3?'example-active':''" @click="levelSel(list,'3')">
+							{{list.s_level3}}
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="tag-view example-tag" v-for="items in carCode">
+				<uni-tag :text="items.s_car_code" inverted="false" @click="levelSel(items,'1')" :class="ckLeTxt == items.s_car_code ? 'tag-active':''"></uni-tag>
+				<!-- <view v-for="list in items.s_level2" class="example-level">
+					<uni-tag :text="list.s_level2" inverted="false" @click="levelSel(list)"></uni-tag>
+					<view  v-for="ite in list.s_level3">
+						<uni-tag :text="ite.s_level3" inverted="false" @click="levelSel(ite)"></uni-tag>
+					</view>
+				</view> -->
+			</view>
+			<view class="am-clear"></view>
+		</view>
+		<!-- 原车代码内容结束 -->
+		
+		<!-- 产品列表内容开始 -->
+		<view class="index-content" v-if="proList.length>0">
+			<view class="example-title">相关产品：</view>
+			<view class="index-product">
+				<view class="index-list" v-for="(item,index) in proList" @click="toDetail(item)">
+					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
+					<view class="index-uinn">
+						<text class="index-title">{{item.title}}</text>
+						<!-- <view class="index-txt">
+							<text>型号:{{item.productmodel}}</text>
+						</view>
+						<view class="index-txt"><text>适用范围:{{item.suitable}}</text></view> -->
+						<view class="index_collect ub ub-ac">
+							<text class="ub f32 am-blod" v-if="item.a_id > 0">赠</text>
+							<text class="iconfont ub umar-l" @click.stop="collCancle(item)" v-if="item.f_id">&#xe7bd;</text>
+							<text class="iconfont ub umar-l" @click.stop="collect(item)" v-else>&#xe7bc;</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<view class="example-title" v-show="noProducts">
+			<image class="emptyImg" src="../../../static/images/empty.png" mode="widthFix"></image>
+		</view>
+		<!-- 产品列表内容结束 -->
+	</view>
+</template>
+
+<script>
+	import uniLoadMore from '@/components/uni-load-more/uni-load-more.vue'
+	export default {
+		components:{
+			uniLoadMore
+		},
+		data() {
+			return {
+				proList:[],//产品列表
+				carCode:[],//原车代码
+				userInfo:{},//用户信息
+				p:1,
+				pageSize:10,
+				pageCount: '',
+				status:'more',
+				keywords:'',
+				scode:'',
+				ckLevel:{},
+				isCk:false,
+				ckLeTxt:'',
+				noProducts: false
+			}
+		},
+		onLoad(option) {
+			let this_ = this;
+			uni.getStorage({
+			    key: 'userInfo',
+			    success: function (res) {
+					this_.userInfo = res.data[0];
+					if(!this_.$check.isEmpty(option.keyWord)){
+						this_.keywords = option.keyWord;
+						this_.scode = option.keyWord;
+						// this_.getCar(); 游客不能搜索原车代码
+						this_.getProduct();
+					}
+					if(!this_.$check.isEmpty(option.scode)){
+						this_.scode = option.scode;
+						this_.ckLeTxt = option.scode;
+						this_.getCar();
+						
+					}
+			    }
+			});
+		},
+		//上拉加载
+		onReachBottom (){
+			if(this.p < this.pageCount){
+				this.p++;
+				this.status = 'loading';
+				if(!this_.$check.isEmpty(this_.keywords)){
+					this.getProduct();
+				}
+			}else{
+				this.status = 'noMore';
+			}
+		},
+		methods: {
+			//机型查询
+			getCar(){
+				let this_ = this;
+				uni.showLoading();
+				this_.$http.httpTokenRequest({
+					url:this_.$api.CarCode + '?code=' + this_.scode + '&level2=&level3=',
+					method:'GET',
+					data:{},
+				}).then(res => {
+					//请求成功
+					uni.hideLoading();
+					if(!this_.$check.isEmpty(res.data)){
+						this_.carCode = res.data;
+						this_.getCodePro(this_.carCode[0].s_mb001);
+						if(this_.carCode.length == 1){
+							if(!this_.$check.isEmpty(this_.carCode[0].s_level2)){
+								this_.ckLevel = this_.carCode;
+								this_.isCk = true;
+								this_.ckLevel = this_.carCode[0];
+							}
+						}
+					}
+					
+				},error => {
+					console.log(error);
+				});
+			},
+			
+			//点击“等级”查询
+			levelSel(item,type){
+				let this_ = this;
+				this_.proList = [];
+				if(!this_.$check.isEmpty(item.s_mb001)){
+					this_.getCodePro(item.s_mb001);
+				}
+				//点击一级
+				if(type=='1'){
+					if(!this_.$check.isEmpty(item.s_level2)){
+						this_.ckLevel = item;
+						this_.isCk = true;
+					}
+					this_.ckLeTxt = item.s_car_code;
+				}else if(type=='2') {
+					this_.ckLeTxt = item.s_level2;
+				}else if(type=='3') {
+					this_.ckLeTxt = item.s_level3;
+				}
+				
+				
+			},
+			
+			//查询产品
+			getCodePro(mb001){
+				let this_ = this;
+				uni.showLoading();
+				this_.$http.httpTokenRequest({
+					url:this_.$api.ProductByCode + '?c_id=' + this_.userInfo.c_id + '&c_type=' + this_.userInfo.c_type + '&code=' + mb001,
+					method:'GET',
+					data:{},
+				}).then(res => {
+					//请求成功
+					uni.hideLoading();
+					this_.proList = res.data;
+				},error => {
+					console.log(error);
+				});
+			},
+			
+			//产品列表
+			getProduct(){
+				let this_ = this;
+				//获取首页产品列表
+				uni.showLoading();
+				this_.$http.httpTokenRequest({
+					url:this_.$api.ProductHome+'?c_id='+ this_.userInfo.c_id + '&c_type='+this_.userInfo.c_type+'&c_ma001='+this_.userInfo.c_ma001+'&tag='+this_.keywords+'&pageindex='+this_.p+'&pagesize='+this_.pageSize,
+					method:'GET',
+					data:{},
+				}).then(res => {
+					//请求成功
+					uni.hideLoading();
+					if(this_.p > 1){
+						this_.proList = this_.proList.concat(res.data.rows);
+					}else{
+						this_.proList = res.data.rows;
+					}
+					
+					if(this_.proList.length == 0){
+						this_.noProducts = true;
+					}else{
+						this_.noProducts = false;
+					}
+					
+					this_.status = 'more';
+					this_.papeTotal(res.data.total);
+				},error => {
+					console.log(error);
+				});
+				
+				
+			},
+			
+			
+			//点击产品列表进入详情
+			toDetail(item){
+				let this_ = this;
+				uni.navigateTo({
+				 	url: '../detail/detail?code='+item.erpcode + '&type=index'
+				}); 
+			},
+			
+			//点击收藏
+			collect(item){
+				let this_ = this;
+				this_.$http.httpTokenRequest({
+					url:this_.$api.AddFavorite,
+					method:'POST',
+					data:{"c_id":this_.userInfo.c_id,"c_ma001":this_.userInfo.c_ma001,"c_ma002":this_.userInfo.c_ma002,"i_mb001":item.erpcode},
+				}).then(res => {
+					//请求成功
+					if(res.data.State){
+						item.f_id = res.data.centent;
+						uni.showToast({
+							icon : 'none',
+							title : '收藏成功',
+							duration:1500
+						});
+					}
+					
+				},error => {
+					console.log(error);
+				});
+			},
+			//取消收藏
+			collCancle(item){
+				let this_ = this;
+				this_.$http.httpTokenRequest({
+					url:this_.$api.DelFavorite,
+					method:'POST',
+					data:[{"f_id":item.f_id}],
+				}).then(res => {
+					//请求成功
+					if(res.data.State){
+						item.f_id = '';
+					}
+					uni.showToast({
+						icon : 'none',
+						title : '取消收藏',
+						duration:1500
+					});
+				},error => {
+					console.log(error);
+				});
+			},
+			//查询
+			search(e){
+				let this_ = this;
+				this_.scode = this_.keywords;
+				// this_.getCar();
+				this_.getProduct();
+			},
+			//获取总页数
+			papeTotal(rowCount){
+				let this_ = this;
+				if(rowCount != null && rowCount != ""){
+					if(rowCount % this_.pageSize == 0){
+						this_.pageCount = parseInt(rowCount / this_.pageSize);
+					}else{
+						this_.pageCount = parseInt(rowCount / this_.pageSize) + 1;
+					}
+				}else{
+					return 0;
+				}
+			},
+			
+		},
+	}
+</script>
+<style scoped>
+.umar-l{
+	margin-left: 10rpx;
+}
+.index-search-txt{
+	width: 70%;
+}
+.index-search-btn{
+	width: 18%;
+}
+.example-tag .tag-active{
+	background-color:#2d79f1;
+	border-radius: 12rpx;
+	-webkit-border-radius:12rpx;
+}
+.emptyImg{
+	display: block;
+	margin: 0 auto;
+}
+</style>

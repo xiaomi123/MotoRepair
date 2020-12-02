@@ -1,0 +1,30 @@
+
+.detail-td{
+	border-left: 1px solid #eee;
+}
+.second{
+	background-color: #FFFFFF;
+}
+.second .uni-tab__cart-sub-left{
+	-webkit-box-flex: 1 !important;
+	-webkit-flex: 1 !important;
+	        flex: 1 !important;
+}
+.second .uni-tab__cart-sub-right{
+	-webkit-box-flex: initial;
+	-webkit-flex: initial;
+	        flex: initial;
+}
+.login-list{
+	margin-top: 20rpx;
+}
+uni-button:after{
+	content: none;
+}
+.umar-a{
+	margin: 0 15rpx;
+}
+.cart-cust-btn{
+	bottom:0
+}
+

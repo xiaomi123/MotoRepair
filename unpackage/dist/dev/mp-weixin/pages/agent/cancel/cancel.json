@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "已取消订单",
+  "usingComponents": {
+    "uni-load-more": "/components/uni-load-more/uni-load-more",
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "uni-steps": "/components/uni-steps/uni-steps"
+  }
+}

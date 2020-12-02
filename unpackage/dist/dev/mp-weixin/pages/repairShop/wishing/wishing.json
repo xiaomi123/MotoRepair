@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "许愿池",
+  "usingComponents": {
+    "uni-tag": "/components/uni-tag/uni-tag"
+  }
+}

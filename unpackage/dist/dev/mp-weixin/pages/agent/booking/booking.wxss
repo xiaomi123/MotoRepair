@@ -1,0 +1,80 @@
+
+.index-price.data-v-0df3518e{
+	display: inline-block;
+	margin-right:10rpx;
+}
+.tobuy-container.data-v-0df3518e{
+	padding-bottom:200rpx;
+}
+.custpro-cart.data-v-0df3518e{
+	width: auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.custpro-cont.data-v-0df3518e{
+	-webkit-box-align: baseline;
+	-webkit-align-items: baseline;
+	        align-items: baseline;
+}
+.custpro-list.data-v-0df3518e,.stock-item.data-v-0df3518e{
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+}
+.stock-item.data-v-0df3518e{
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+}
+.goods-info.data-v-0df3518e,.stock-info.data-v-0df3518e{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.stock-info.data-v-0df3518e{
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.booking-btn.data-v-0df3518e{
+	margin-left: 30rpx;
+}
+.booking-btn button.data-v-0df3518e{
+	height: 24px;
+	line-height: 24px;
+	padding: 0 0.5em;
+	font-size: 12px;
+}
+.custpro-item.data-v-0df3518e{
+	font-size: 28rpx;
+	width: auto;
+}
+.detail-tr.data-v-0df3518e:first-child{
+	background-color: #EEEEEE;
+}
+.detail-table.data-v-0df3518e{
+	border-left:1px solid #ddd;
+}
+.detail-td.data-v-0df3518e{
+	-webkit-box-flex: inherit;
+	-webkit-flex: inherit;
+	flex: inherit;
+	width: 44%;
+	font-size: 24rpx;
+}
+.stock-name.data-v-0df3518e{
+	display: block;
+	padding: 10rpx 20rpx;
+	background-color: #6dacf0;
+	font-weight: 700;
+}
+.login-dialog-cont.data-v-0df3518e{
+	top:10%;
+	padding: 5% 2%;
+}
+.scroll-Y.data-v-0df3518e{
+	max-height: 600rpx;
+}
+

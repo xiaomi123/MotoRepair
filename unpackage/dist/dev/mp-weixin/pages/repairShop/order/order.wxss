@@ -1,0 +1,38 @@
+
+.umar-r{margin-right: 20rpx;}
+.detail-tr:first-child,.detail-tr:last-child{
+	background-color: #EEEEEE;
+}
+.detail-table{
+	border-left:1px solid #ddd;
+}
+.detail-td{
+	-webkit-box-flex: inherit;
+	-webkit-flex: inherit;
+	flex: inherit;
+	width: 25%;
+	font-size: 24rpx;
+}
+.number{
+	width: 12%;
+}
+.price{
+	width: 22%;
+}
+.codenum{
+	width: 41%;
+}
+.td-br{
+	word-break: break-all;
+}
+.icon-del{
+	width: 35rpx;
+	height: 35rpx;
+}
+.umar-rs{
+	margin-right: 8rpx;
+}
+.umar-t{
+	margin-top: 10rpx;
+}
+
