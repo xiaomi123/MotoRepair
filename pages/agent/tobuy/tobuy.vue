@@ -69,9 +69,10 @@
 							<text class="custpro-title">{{item.title}}</text>
 							<view>
 								<!-- 售价:<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text> -->
-								进价:<text class="am-text-danger">￥</text><text class="index-price">{{item.inprice}}</text>
+								进价:<text class="am-text-danger">￥</text><text class="index-price">{{item.inprice}}</text><text style="color:#999">/桶</text>
+								<view>规格:{{item.uqdescription}}</view>
 							</view>
-							<view>我的库存:{{item.storemin}}</view>
+							<!-- <view>我的库存:{{item.storemin}}</view> -->
 						</view>
 					</view>
 				</view>
@@ -90,7 +91,7 @@
 							<view class="custpro-cont" v-for="(stock, index) in item.stockList" :key="index">
 								<view class="custpro-item">{{stock.name}}库存:{{stock.storage}}</view>
 								<view class="custpro-cart" v-if="stock.storage > 0">
-									<uni-number-box :min="0" :max="stock.storage" :value="stock.s_qty" @change="changeCart($event,index,stock,item)" :height="24" :width="90"></uni-number-box>
+									<uni-number-box :min="0" :max="stock.storage/item.unitquantity" :value="stock.s_qty" @change="changeCart($event,index,stock,item)" :height="24" :width="90"></uni-number-box>
 								</view>
 								<view class="custpro-cart" v-else>
 									<uni-number-box :min="0" :value="stock.s_qty" @change="changeCart($event,index,stock,item)" :height="24" :width="90"></uni-number-box>
@@ -114,8 +115,9 @@
 							<view>
 								<!-- 售价:<text class="am-text-danger">￥</text><text class="index-price">{{item01.currentprice}}</text>进价:{{item01.inprice}} -->
 								进价:<text class="am-text-danger">￥</text><text class="index-price">{{item01.inprice}}</text>
+								<view>规格:{{item.uqdescription}}</view>
 							</view>
-							<view>我的库存:{{item01.storemin}}</view>
+							<!-- <view>我的库存:{{item01.storemin}}</view> -->
 						</view>
 					</view>
 				</view>
@@ -134,7 +136,7 @@
 							<view class="custpro-cont" v-for="(stock, index03) in item01.stockList" :key="index03">
 								<view class="custpro-item">{{stock.name}}库存:{{stock.storage}}</view>
 								<view class="custpro-cart" v-if="stock.storage > 0">
-									<uni-number-box :min="0" :max="stock.storage" :value="stock.s_qty" @change="changeCart($event,index03,stock,item01)" :height="24" :width="90"></uni-number-box>
+									<uni-number-box :min="0" :max="stock.storage/item01.unitquantity" :value="stock.s_qty" @change="changeCart($event,index03,stock,item01)" :height="24" :width="90"></uni-number-box>
 								</view>
 								<view class="custpro-cart" v-else>
 									<uni-number-box :min="0" :value="stock.s_qty" @change="changeCart($event,index03,stock,item01)" :height="24" :width="90"></uni-number-box>
@@ -472,9 +474,11 @@
 					let stockList = this_.proList[i].stockList;
 					for(let m = 0; m < stockList.length; m++){
 						if(stockList[m].storage > 0 && stockList[m].s_qty > 0){
-							
 							this_.totalNum = parseInt(this_.totalNum) + parseInt(stockList[m].s_qty);
-							this_.totalPrice = this_.totalPrice + (stockList[m].s_qty * stockList[m].inprice);
+							if(this_.$check.isEmpty(this_.proList[i].unitquantity)){
+								this_.proList[i].unitquantity = 1;
+							}
+							this_.totalPrice = this_.totalPrice + (stockList[m].s_qty*this_.proList[i].unitquantity * stockList[m].inprice);
 							
 						}else if(stockList[m].storage == 0 && stockList[m].s_qty > 0){
 							this_.remind(stockList[m]);
@@ -691,7 +695,7 @@
 				let this_ = this;
 				this_.$set(item,'s_qty',e);
 				let stock = {
-					"i_mb001" : item.erpcode,
+					"mb001" : item.erpcode,
 					"qty" : e,
 					"mc002" : this_.userInfo.storage.split(',')[index]
 				};

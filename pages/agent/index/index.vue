@@ -14,7 +14,7 @@
 		<!-- 代理商信息补全弹层结束 -->
 		
 		<!-- 搜索内容开始 -->
-		<view class="index-search" style="top:0">
+		<view class="index-search" style="top:0;z-index:2">
 			<view class="index-search-cont">
 				<!-- <button class="index-search-btn" @click="filter()">机型目录</button> -->
 				<button class="index-search-btn">品牌目录</button>
@@ -129,16 +129,20 @@
 		</view> -->
 		<view class="index-content">
 			<view class="ub f28 shopList">
+				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(-1);">
+					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
+					<text :style="{color: isShow == -1 ? '#3079F3' : '#333333'}">全部</text>
+				</view>
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(0);">
 					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
-					<text :style="{color: isShow == 0 ? '#3079F3' : '#333333'}">在售机型</text>
+					<text :style="{color: isShow == 0 ? '#3079F3' : '#333333'}">在售产品</text>
 				</view>
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(1);">
 					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
-					<text :style="{color: isShow == 1 ? '#3079F3' : '#333333'}">预售机型</text>
+					<text :style="{color: isShow == 1 ? '#3079F3' : '#333333'}">预售产品</text>
 				</view>
 			</view>
-			<view class="index-product" v-if="isShow == 0">
+			<view class="index-product" v-if="isShow == 0 || isShow == -1">
 				<view class="index-list" v-for="(item,index) in proList" @click="toDetail(item)">
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
 					<view class="index-uinn">
@@ -161,18 +165,21 @@
 				</view>
 			</view>
 			<!-- 预售 -->
-			<!-- <view class="index-product" v-if="isShow == 1">
-				<view class="index-list" v-for="(item,index) in bproList" @click="toDetail(item)">
+			<view class="index-product" v-if="isShow == 1 || isShow == -1">
+				<view class="index-list index-ys" v-for="(item,index) in bproList" @click="toDetail(item)">
+					<image class="icon-img index-dp" src="../../../static/images/hotIcon.png" mode="widthFix"></image>
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
 					<view class="index-uinn">
 						<text class="index-title">{{item.title}}</text>
-						<view class="index-txt">
+						<!-- <view class="index-txt">
 							<text>原车代码:{{item.productmodel}}</text>
 						</view>
-						<view class="index-txt"><text>适用车型:{{item.suitable}}</text></view>
+						<view class="index-txt"><text>适用车型:{{item.suitable}}</text></view> -->
+						<view class="index-txt" v-if="!$check.isEmpty(item.suitable)"><text>品牌:{{item.suitable}}</text></view>
 					</view>
 				</view>
-			</view> -->
+			</view>
+			
 		</view>
 		<!-- 上拉加载 start -->
 		<uni-load-more :status="status" class="am-umar-tbar"></uni-load-more>
@@ -275,7 +282,7 @@
 				cartList : getApp().globalData.carsType,
 				roleTxt : "",//角色描述
 				tabcolor : "#3079F3",
-				isShow : 0, //产品列表
+				isShow : -1, //产品列表
 			}
 		},
 		onLoad() {
@@ -339,7 +346,7 @@
 					this_.getNewOrder();//代理商新订单数量
 					this_.getNewRepair();//修理厂新增账号
 					//this_.getProduct();//产品列表
-					this_.changeShopType(0);
+					this_.changeShopType(-1);
 					this_.getRemindNum(); //到货产品数量
 					
 			    }
@@ -453,7 +460,10 @@
 				this_.isShow = t;
 				if(t == 0){
 					this_.getProduct();
-				}else{
+				}else if(t == 1){
+					this.getBookProduct();
+				}else if(t == -1){
+					this_.getProduct();
 					this.getBookProduct();
 				}
 			},
@@ -731,5 +741,15 @@
 .shopList .icon-img{
 	width: 42rpx;
 	margin-right: 15rpx;
+}
+.index-ys{
+	position: relative;
+}
+.index-dp{
+	position: absolute;
+	top:0;
+	right:0;
+	width:119rpx;
+	z-index: 1;
 }
 </style>
