@@ -20,7 +20,7 @@
 		<!-- 搜索内容结束 -->
 		
 		<!-- 修理厂信息补全弹层开始 -->
-		<view class="login-dialog" v-show="isApply">
+		<view class="login-dialog" v-show="isApply && tag == ''">
 			<view class="login-dialog-cont" style="top:15rpx; bottom: 15rpx;">
 				<view class="login-title">为了能更好的为您提供服务，请准确录入您的信息<text class="iconfont login-dialog-close" @click="isApply=false">&#xe60f;</text></view>
 				<view class="umar-tb">
@@ -87,7 +87,7 @@
 			</view>
 		</view>
 		<!-- 修理厂信息补全弹层结束 -->
-		<view style="margin-top: 15rpx;">
+		<view style="margin-top: 15rpx;" v-if="tag == ''">
 			<view class="notice-bar">
 				<uni-notice-bar showIcon="true" :text="'欢迎 '+userInfo.c_nickname+' 成为我们的普通用户'" background-color="#eeeeee" color="#333333"></uni-notice-bar> 
 			</view>
@@ -184,10 +184,12 @@
 				isApply:false,//信息完善弹层
 				isDealer:false,//判断经销商
 				keywords:'',//搜索
-				models: [{type : '国产车'},{type : '合资车'},{type : '高端车'}]
+				models: [{type : '国产车'},{type : '合资车'},{type : '高端车'}],
+				tag : ''
 			}
 		},
-		onLoad() {
+		onLoad(option) {
+			this.tag = option.tag;
 			//读取存储数据
 			this.getData();
 			//获取地址

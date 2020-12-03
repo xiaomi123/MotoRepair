@@ -49,9 +49,17 @@
 						this_.agentInfo.c_tel = this_.userInfo.c_tel;
 						this_.agentInfo.c_tel1 = this_.userInfo.c_tel1;
 						this_.agentInfo.c_address = this_.userInfo.c_address;
+						
+						//产品展示
+						if(this_.action.split(',')[0].indexOf("preview") != -1){
+							uni.reLaunch({
+								url:'../tourist/index/index?tag=preview'
+							})
+						}
+						
 						if((res.data[0].c_type == 1) && (res.data[0].c_state != 0)){
 							uni.reLaunch({
-								url: '../tourist/index/index'
+								url: '../tourist/index/index?tag='
 							});
 						}else{
 							//判断信息是否填写 --0填写过，1未填写 

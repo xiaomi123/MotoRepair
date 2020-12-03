@@ -13,7 +13,7 @@
 		</view>
 		<!-- 搜索内容结束 -->
 		<view class="notice-bar">
-			<uni-notice-bar showIcon="true" :text="'欢迎 '+userInfo.c_nickname+' 加入江陵动力大合采'" background-color="#eeeeee" color="#333333"></uni-notice-bar> 
+			<uni-notice-bar showIcon="true" :text="'欢迎 '+userInfo.c_nickname+' 加入江陵动力大和采'" background-color="#eeeeee" color="#333333"></uni-notice-bar> 
 		</view>
 		
 		<!-- 热门机型 -->

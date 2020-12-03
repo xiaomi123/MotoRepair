@@ -287,7 +287,7 @@
 					this_.userInfo = res.data[0];
 					if(this_.userInfo.c_level == 1){
 						//this_.roleTxt = "成为我们的直营店用户";
-						this_.roleTxt = this_.userInfo.c_ma002 + "为江陵动力大合采配送服务商";
+						this_.roleTxt = this_.userInfo.c_ma002 + "为江陵动力大和采配送服务商";
 						if(this_.userInfo.c_admin == 1){
 							this_.menuList.splice(1,0,{
 								url : '../../../static/images/booking.png',
