@@ -1,7 +1,7 @@
 const baseUrl = 'http://gao.vocen.cn/api/';
 const imgUrl = 'http://gao.vocen.cn:8015';
 const imgPath = 'http://120.76.144.84:8089/';
-// const baseUrl = 'http://10.0.3.188:8006/api/';
+// const baseUrl = 'http://10.0.2.188:8006/api/';
 // const baseUrl = 'http://10.0.2.233:8506/api/';
 
 

@@ -5,10 +5,10 @@
 				<view class="ub uinn-r"><image class="userIcon" :src="userInfo.c_headimgurl"></image></view>
 				<view class="ub ub-f1 ub-ver">
 					<view>{{userInfo.c_nickname}}</view>
-					<view class="am-text-99 f26 umar-t">我的积分：
+					<!-- <view class="am-text-99 f26 umar-t">我的积分：
 						<text class="f30 am-text-primary uinn-r">{{integral}}</text>
 						<text class="am-text-primary" @click="detail()">明细>></text>
-					</view>
+					</view> -->
 				</view>
 			</view>
 		</view>
