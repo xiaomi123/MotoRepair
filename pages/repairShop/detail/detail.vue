@@ -46,7 +46,7 @@
 			<view class="detail-txt">
 				<text class="detail-name">{{detInfo.title}}</text>
 				<!-- <text v-if="userInfo.c_type == 1"><text class="detail-price" >￥{{detInfo.currentprice}}</text>/{{detInfo.unit}}</text> -->
-				<view v-if="userInfo.c_type == 3">
+				<!-- <view v-if="userInfo.c_type == 3">
 					<text>进价：</text>
 					<block v-if="userInfo.c_isview == 0">
 						<text class="detail-price f30">协议价</text>
@@ -54,11 +54,12 @@
 					<block v-else>
 						<text class="detail-price">￥{{detInfo.a_price}}</text>/{{detInfo.unit}}
 					</block>
-				</view>
+				</view> -->
 				<view class="">
 					<text>售价：</text>
 					<text class="detail-price">￥{{detInfo.currentprice}}</text>/{{detInfo.unit}}
 				</view>
+				<view v-if="!$check.isEmpty(detInfo.uqdescription)" style="margin-top:10rpx;">规格：{{detInfo.uqdescription}}</view>
 			</view>
 			<view class="detail-cart">
 				<uni-number-box :min="1" @change="changeCart"></uni-number-box>
@@ -171,7 +172,7 @@
 		onLoad(option) {
 			//读取存储数据
 			let this_ = this;
-			if(option.is_footer_bar != 0){
+			if(option.is_footer_bar != 0 && option.is_footer_bar != -1 ){
 				this_.isFooterBar = false;
 			}
 			uni.getStorage({
@@ -204,11 +205,11 @@
 					   this_.contImg.push(this_.$http.imgUrl+capture);
 				    });
 					if(this_.userInfo.c_type == 3 && this_.userInfo.c_isview == 1){
-						this_.text[0].money = '¥'+this_.qty * this_.detInfo.a_price;
+						this_.text[0].money = '¥'+this_.qty * this_.detInfo.a_price * this_.detInfo.unitquantity;
 					}else if(this_.userInfo.c_type == 3 && this_.userInfo.c_isview == 0){
 						this_.text[0].money = '¥'+this_.qty * 0;
 					}else if(this_.userInfo.c_type == 1){
-						this_.text[0].money = '¥'+this_.qty * this_.detInfo.currentprice;
+						this_.text[0].money = '¥'+this_.qty * this_.detInfo.currentprice * this_.detInfo.unitquantity;
 					}
 					
 					if(this_.$check.isEmpty(this_.a_id)){
@@ -226,9 +227,9 @@
 				if(this_.userInfo.c_type == 3 && this_.userInfo.c_isview == 0){
 					this_.text[0].money = '¥'+ e * 0;
 				}else if(this_.userInfo.c_type == 3 && this_.userInfo.c_isview == 1){
-					this_.text[0].money = '¥'+ e * this_.detInfo.a_price;
+					this_.text[0].money = '¥'+ e * this_.detInfo.a_price * this_.detInfo.unitquantity;
 				}else if(this_.userInfo.c_type == 1){
-					this_.text[0].money = '¥'+ e * this_.detInfo.currentprice;
+					this_.text[0].money = '¥'+ e * this_.detInfo.currentprice * this_.detInfo.unitquantity;
 				}
 			},
 			

@@ -44,20 +44,24 @@
 								<view class="detail-td">商品名称</view>
 								<view class="detail-td number">数量</view>
 								<view class="detail-td">单价</view>
-								<view class="detail-td codenum">发动机号</view>
+								<!-- <view class="detail-td codenum">发动机号</view> -->
+								<view class="detail-td">规格</view>
+								<view class="detail-td">小计</view>
 							</view>
 							<view class="detail-tr ub-ac" v-for="list in items.item">
 								<view class="detail-td">{{list.title}}</view>
-								<view class="detail-td number">{{list.i_qty}}</view>
-								<view class="detail-td price" v-if="userInfo.c_type == 1">{{parseInt(list.currentprice)}}</view>
+								<view class="detail-td number">{{list.i_qty}}/件</view>
+								<view class="detail-td price" v-if="userInfo.c_type == 1">{{parseInt(list.currentprice)}}/{{list.unit}}</view>
 								<view class="detail-td price" v-else-if="userInfo.c_type == 3 && userInfo.c_isview == 0">协议价</view>
 								<view class="detail-td price" v-else-if="userInfo.c_type == 3 && userInfo.c_isview == 1">{{parseInt(list.a_price)}}</view>
-								<view class="detail-td codenum" v-if="list.code !=''&&list.code !=null">
+								<!-- <view class="detail-td codenum" v-if="list.code !=''&&list.code !=null">
 									<view class="td-br" v-for="codList in list.code.split(',')">
 										{{codList}}
 									</view>
 								</view>
-								<view class="detail-td codenum" v-else></view>
+								<view class="detail-td codenum" v-else></view> -->
+								<view class="detail-td" v-if="!$check.isEmpty(list.uqdescription)">{{list.uqdescription}}</view>
+								<view class="detail-td">{{list.unitquantity*list.i_qty*parseInt(list.currentprice)}}</view>
 							</view> 
 							<view class="detail-tr">
 								<view class="detail-td" style="width: 50%;">合计：<text class="am-blod">{{items.s_qty}}</text></view>
@@ -66,11 +70,11 @@
 						</view>
 					</view>
 					<view class="ub am-btn-panel ub-ac">备注：{{items.s_note}}</view>
-					<view class="com-tip" style="text-align: right;" v-if="tabIndex == 1">点击“确认收货”可获积分奖励</view>
+					<!-- <view class="com-tip" style="text-align: right;" v-if="tabIndex == 1">点击“确认收货”可获积分奖励</view> -->
 					<view class="ub am-btn-panel ub-ac">
 						<view class="ub ub-f1 am-text-99">下单时间：{{items.s_create_time}}</view>
 						<view class="ub ub-pe">
-							<button class="f24 am-btn-primary" @click="receiptOk(items,index)" v-if="tabIndex == 1">确认收货</button>
+							<!-- <button class="f24 am-btn-primary" @click="receiptOk(items,index)" v-if="tabIndex == 1">确认收货</button> -->
 							<!-- <button class="f24" @click="orderCancle(item)" v-if="tabIndex == 0">取消订单</button> -->
 						</view>
 					</view>
@@ -214,9 +218,9 @@
 							if(this_.userInfo.c_type == 3 && this_.userInfo.c_isview == 0){
 								list.priceTotal += item[m].i_qty * 0;
 							}else if(this_.userInfo.c_type == 3 && this_.userInfo.c_isview == 1){
-								list.priceTotal += item[m].i_qty * item[m].a_price;
+								list.priceTotal += item[m].i_qty * item[m].a_price * item[m].unitquantity;
 							}else{
-								list.priceTotal += item[m].i_qty * item[m].currentprice;
+								list.priceTotal += item[m].i_qty * item[m].currentprice * item[m].unitquantity;
 							}
 						}
 					});
