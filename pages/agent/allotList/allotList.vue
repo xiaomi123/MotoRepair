@@ -31,12 +31,12 @@
 					</view>
 					<view class="ub am-btn-panel ub-ac">
 						<view class="ub ub-f1 ub-pe" v-if="tabIndex == 0">
-							<view class="ub umar-r">
+							<!-- <view class="ub umar-r">
 								<button class="f24 am-btn-danger" @click="scanOut(list)">扫描出库</button>
 							</view>
 							<view class="ub umar-r">
 								<button class="f24 am-btn-primary" @click="orderOk(list,index)">确认发货</button>
-							</view>
+							</view> -->
 							<view class="ub">
 								<button class="f24" @click="delAllot(list,index)">删除</button>
 							</view>

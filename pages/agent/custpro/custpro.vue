@@ -32,7 +32,7 @@
 					<view class="custpro-cont">
 						<view class="custpro-item">
 							<text class="custpro-title">{{item.title}}</text>
-							<view>售价:<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text></view>
+							<view>售价:<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text><text style="display:inline-block;margin-left:3rpx;color:#999">/{{item.unit}}</text></view>
 						</view>
 						<view class="custpro-cart" v-if="enter=='custorder'">
 							<uni-number-box :min="0" :value="0" @change="changeCart($event,index)"></uni-number-box>
@@ -43,10 +43,11 @@
 						</view>
 					</view>
 					<view class="custpro-txt">
-						<view class="index-txt"><text>型号:{{item.productmodel}}</text></view>
+						<view class="index-txt"><text v-if="!$check.isEmpty(item.productmodel)">型号:{{item.productmodel}}</text><view v-if="!$check.isEmpty(item.uqdescription)">规格:{{item.uqdescription}}</view></view>
 						<text class="index-give" v-if="item.a_id>0">赠</text>
+						
 					</view>
-					<view class="index-txt"><text>库存:{{item.storage}}</text></view>
+					<!-- <view class="index-txt"><text>库存:{{item.storage}}</text></view> -->
 				</view>
 			</view>
 		</view>
@@ -219,7 +220,7 @@
 				for(let i=0;i<this_.proList.length;i++){
 					if(!this_.$check.isEmpty(this_.proList[i].s_qty)){
 						this_.totalNum = parseInt(this_.totalNum) + parseInt(this_.proList[i].s_qty);
-						this_.totalPrice = this_.totalPrice + (this_.proList[i].s_qty*this_.proList[i].currentprice);
+						this_.totalPrice = this_.totalPrice + (this_.proList[i].s_qty*this_.proList[i].unitquantity*this_.proList[i].currentprice);
 					}
 				}
 				

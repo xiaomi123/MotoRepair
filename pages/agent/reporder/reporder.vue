@@ -62,22 +62,26 @@
 								<view class="detail-td">商品名称</view>
 								<view class="detail-td number">数量</view>
 								<view class="detail-td">单价</view>
-								<view class="detail-td codenum">发动机号</view>
+								<view class="detail-td">规格</view>
+								<!-- <view class="detail-td codenum">发动机号</view> -->
+								<view class="detail-td codenum">小计</view>
 							</view>
 							<view class="detail-tr ub-ac" v-for="list in items.item">
 								<view class="detail-td">{{list.title}}</view>
-								<view class="detail-td number">{{list.i_qty}}</view>
-								<view class="detail-td price" v-if="items.s_type_no == 0">{{parseInt(list.currentprice)}}</view>
-								<view class="detail-td price" v-else-if="items.s_type_no == 1 && items.c_isview == 0">协议价</view>
+								<view class="detail-td number">{{list.i_qty}}<text v-if="parseInt(list.unitquantity)>0">件</text></view>
+								<view class="detail-td price" v-if="items.s_type_no == 0">{{parseInt(list.currentprice)}}/{{list.unit}}</view>
+								<!-- <view class="detail-td price" v-else-if="items.s_type_no == 1 && items.c_isview == 0">协议价</view> -->
 								<view class="detail-td price" v-else-if="items.s_type_no == 1 && items.c_isview == 1">{{list.a_price}}</view>
-								<view class="detail-td codenum" v-if="list.code !=''&&list.code !=null">
+								<view class="detail-td">{{list.uqdescription}}</view>
+								<!-- <view class="detail-td codenum" v-if="list.code !=''&&list.code !=null">
 									<view class="ub ub-ac" v-for="codList in list.code.split(',')" @click="delCode(list,codList,index)" :ref="index">
 										<view class="ub umar-rs">{{codList}}</view>
 										<image src="../../../static/images/del.png" class="ub icon-del" v-if="tabIndex == 0"></image>
 									</view>
 									
 								</view>
-								<view class="detail-td codenum" v-else></view>
+								<view class="detail-td codenum" v-else></view> -->
+								<view class="detail-td codenum">{{list.currentprice*list.i_qty*list.unitquantity}}</view>
 							</view> 
 							<view class="detail-tr">
 								<view class="detail-td" style="width: 50%;">合计：<text class="am-blod">{{items.s_qty}}</text></view>
@@ -88,15 +92,15 @@
 					<view class="ub am-btn-panel ub-ac">
 						<view class="ub umar-r am-text-99">下单时间：{{items.s_create_time}}</view>
 					</view>
-					<view class="com-tip" style="text-align: right;" v-if="tabIndex == 0">扫描发动机外箱二维码出库后，可确认发货</view>
+					<!-- <view class="com-tip" style="text-align: right;" v-if="tabIndex == 0">扫描发动机外箱二维码出库后，可确认发货</view> -->
 					<view class="ub am-btn-panel ub-ac">
 						<view class="ub ub-f1 ub-pe">
-							<view class="ub umar-r" v-if="tabIndex == 0">
+							<!-- <view class="ub umar-r" v-if="tabIndex == 0">
 								<button class="f24 am-btn-danger uinn-a1" @click="scanOut(items)">扫描出库</button>
 							</view>
 							<view class="ub umar-r" v-if="tabIndex == 0">
 								<button class="f24 am-btn-danger uinn-a1" @click="handleOut(items)">手动出库</button>
-							</view>
+							</view> -->
 							<view class="ub umar-r" v-if="tabIndex == 0">
 								<button class="f24 am-btn-primary uinn-a1" @click="orderOk(items,index)">确认发货</button>
 							</view>
@@ -295,11 +299,11 @@
 						let item = res.data.rows[i].item;
 						for(let m = 0; m < item.length; m++){
 							if(res.data.rows[i].s_type_no == 0){
-								res.data.rows[i].priceTotal += item[m].i_qty * item[m].currentprice;
+								res.data.rows[i].priceTotal += item[m].i_qty * item[m].unitquantity * item[m].currentprice;
 							}else if(res.data.rows[i].s_type_no == 1 && res.data.rows[i].c_isview == 0){
 								res.data.rows[i].priceTotal += item[m].i_qty * 0;
 							}else if(res.data.rows[i].s_type_no == 1 && res.data.rows[i].c_isview == 1){
-								res.data.rows[i].priceTotal += item[m].i_qty * item[m].a_price;
+								res.data.rows[i].priceTotal += item[m].i_qty * item[m].unitquantity * item[m].a_price;
 							}
 							
 						}

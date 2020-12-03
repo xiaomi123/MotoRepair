@@ -57,10 +57,10 @@
 		
 		<view class="ub am-btn-fixed am-bg-white ub-ac">
 			<view class="ub ub-f1" style="padding-left: 30rpx;">总计：{{stockTotal}}</view>
-			<view class="ub">
+			<!-- <view class="ub">
 				<button class="am-btn" type="primary" @click="scanEnter()">扫描入库</button>
 				<button class="am-btn" type="warn" @click="handEnter()">手动入库</button>
-			</view>
+			</view> -->
 		</view>
 		<view class="tiShiWrap" v-show="tiShi">
 			<view class="tiShiWrapCon">{{tiShiText}}</view>

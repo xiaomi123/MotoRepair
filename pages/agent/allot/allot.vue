@@ -28,12 +28,12 @@
 					</view>
 					<view class="ub am-btn-panel ub-ac">
 						<view class="ub ub-f1 ub-pe">
-							<view class="ub umar-r">
+							<!-- <view class="ub umar-r">
 								<button class="f24 am-btn-danger uinn-a1" @click="handOut()">手动出库</button>
 							</view>
 							<view class="ub umar-r">
 								<button class="f24 am-btn-danger uinn-a1" @click="scanOut()">扫描出库</button>
-							</view>
+							</view> -->
 							<view class="ub umar-r">
 								<button class="f24 am-btn-primary uinn-a1" @click="orderOk()">确认发货</button>
 							</view>
