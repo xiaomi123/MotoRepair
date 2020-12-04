@@ -127,7 +127,21 @@
 		
 		<view class="index-content">
 			<view class="index-title"></view>
-			<view class="index-product">
+			<view class="ub f28 shopList">
+				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(-1);">
+					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
+					<text :style="{color: isShow == -1 ? '#3079F3' : '#333333'}">全部</text>
+				</view>
+				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(0);">
+					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
+					<text :style="{color: isShow == 0 ? '#3079F3' : '#333333'}">在售产品</text>
+				</view>
+				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(1);">
+					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
+					<text :style="{color: isShow == 1 ? '#3079F3' : '#333333'}">预售产品</text>
+				</view>
+			</view>
+			<view class="index-product" v-if="isShow == 0 || isShow == -1">
 				<view class="index-list" v-for="(item,index) in proList" @click="toDetail(item)">
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
 					<text class="index-title">{{item.title}}</text>
@@ -138,6 +152,21 @@
 					<view class="index-txt"><text>适用范围:{{item.suitable}}</text></view> -->
 					<view class="index_collect ub ub-ac">
 						<text class="ub f32 am-blod" v-if="item.a_id > 0">赠</text>
+					</view>
+				</view>
+			</view>
+			<!-- 预售 -->
+			<view class="index-product" v-if="isShow == 1 || isShow == -1">
+				<view class="index-list index-ys" v-for="(item,index) in bproList" @click="toDetail(item)">
+					<image class="icon-img index-dp" src="../../../static/images/hotIcon.png" mode="widthFix"></image>
+					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
+					<view class="index-uinn">
+						<text class="index-title">{{item.title}}</text>
+						<!-- <view class="index-txt">
+							<text>原车代码:{{item.productmodel}}</text>
+						</view>
+						<view class="index-txt"><text>适用车型:{{item.suitable}}</text></view> -->
+						<view class="index-txt" v-if="!$check.isEmpty(item.suitable)"><text>品牌:{{item.suitable}}</text></view>
 					</view>
 				</view>
 			</view>
@@ -166,6 +195,7 @@
 				interval: 2000,
 				duration: 500,
 				proList:[],
+				bproList:[],//预售产品列表
 				userInfo:{},
 				p:1,
 				pageSize:10,
@@ -186,7 +216,8 @@
 				isDealer:false,//判断经销商
 				keywords:'',//搜索
 				models: [{type : '国产车'},{type : '合资车'},{type : '高端车'}],
-				tag : ''
+				tag : '',
+				isShow : -1, //产品列表
 			}
 		},
 		onLoad(option) {
@@ -196,6 +227,7 @@
 			})
 			//读取存储数据
 			this.getData();
+			this.getBookProduct();//预售
 			//获取地址
 			this.wxInit();
 		},
@@ -397,32 +429,38 @@
 						// 		this_.desc = '您好！您的申请审核未通过，您仍可通过本平台了解本公司的产品信息';
 						// 	}
 						// }
-						
-						//获取首页产品列表
-						uni.showLoading();
-						this_.$http.httpTokenRequest({
-							//url:this_.$api.ProductHome+'?c_id='+ this_.userInfo.c_id + '&c_type='+this_.userInfo.c_type+'&pageindex='+this_.p+'&pagesize='+this_.pageSize,
-							url:this_.$api.ProductHome+'?c_id='+ this_.userInfo.c_id + '&c_type='+this_.userInfo.c_type+'&tag='+this_.keywords+'&pageindex='+this_.p+'&pagesize='+this_.pageSize,
-							method:'GET',
-							data:{},
-						}).then(res => {
-							//请求成功
-							uni.hideLoading();
-							//console.log("产品列表");
-							if(this_.p > 1){
-								this_.proList = this_.proList.concat(res.data.rows);
-							}else{
-								this_.proList = res.data.rows;
-							}
-							this_.status = 'more';
-							this_.papeTotal(res.data.total);
-						},error => {
-							console.log(error);
-						});
-						
+						//获取产品列表
+						this_.getProduct();
+						//预售产品
+						this_.getBookProduct();
 				    }
 				});
 			},
+			getProduct(){
+				let this_ = this;
+				//获取首页产品列表
+				uni.showLoading();
+				this_.$http.httpTokenRequest({
+					//url:this_.$api.ProductHome+'?c_id='+ this_.userInfo.c_id + '&c_type='+this_.userInfo.c_type+'&pageindex='+this_.p+'&pagesize='+this_.pageSize,
+					url:this_.$api.ProductHome+'?c_id='+ this_.userInfo.c_id + '&c_type='+this_.userInfo.c_type+'&tag='+this_.keywords+'&pageindex='+this_.p+'&pagesize='+this_.pageSize,
+					method:'GET',
+					data:{},
+				}).then(res => {
+					//请求成功
+					uni.hideLoading();
+					//console.log("产品列表");
+					if(this_.p > 1){
+						this_.proList = this_.proList.concat(res.data.rows);
+					}else{
+						this_.proList = res.data.rows;
+					}
+					this_.status = 'more';
+					this_.papeTotal(res.data.total);
+				},error => {
+					console.log(error);
+				});
+			},
+			
 			//获取总页数
 			papeTotal(rowCount){
 				let this_ = this;
@@ -557,7 +595,45 @@
 			//修理厂选择主修车型
 			radioChange(e){ 
 				this.agentInfo.c_main = e.detail.value;
-			}
+			},
+			//预售产品列表
+			getBookProduct(){
+				let this_ = this;
+				//获取首页产品列表
+				uni.showLoading();
+				this_.$http.httpTokenRequest({
+					url:this_.$api.ProductByPre+'?c_id='+ this_.userInfo.c_id +'&tag='+this_.keywords+'&pageindex='+this_.p+'&pagesize='+this_.pageSize,
+					method:'GET',
+					data:{},
+				}).then(res => {
+					//请求成功
+					uni.hideLoading();
+					console.log(res);
+					if(this_.p > 1){
+						this_.bproList = this_.bproList.concat(res.data.rows);
+					}else{
+						this_.bproList = res.data.rows;
+					}
+					this_.status = 'more';
+					this_.papeTotal(res.data.total);
+				},error => {
+					console.log(error);
+				});
+			},
+			//切换产品种类
+			changeShopType(t){
+				let this_ = this;
+				this_.p = 1;
+				this_.isShow = t;
+				if(t == 0){
+					this_.getProduct();
+				}else if(t == 1){
+					this.getBookProduct();
+				}else if(t == -1){
+					this_.getProduct();
+					this.getBookProduct();
+				}
+			},
 		},
 		//上拉加载
 		onReachBottom (){
@@ -615,5 +691,23 @@
 	top:11rpx;
 	font-size:40rpx;
 	color:#007aff;
+}
+/*产品列表*/
+.shopList{
+	padding: 30rpx 0;
+}
+.shopList .icon-img{
+	width: 42rpx;
+	margin-right: 15rpx;
+}
+.index-ys{
+	position: relative;
+}
+.index-dp{
+	position: absolute;
+	top:0;
+	right:0;
+	width:119rpx;
+	z-index: 1;
 }
 </style>
