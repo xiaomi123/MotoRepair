@@ -73,7 +73,7 @@
         "usingComponents" : true
     },
     "h5" : {
-        "title" : "大和采",
+        "title" : "江陵动力大和采",
         "router" : {
             "mode" : "hash",
             "base" : ""

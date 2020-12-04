@@ -53,14 +53,14 @@
 		
 		<!--头部管理-->
 		<view class="ub ub-ac">
-			<view class="cart-bot-left ub ub-f1 ub-ac">
+			<!-- <view class="cart-bot-left ub ub-f1 ub-ac">
 				<checkbox-group @change="checkAll" v-show="cartList.length>1">
 					<label>
 						<checkbox value="all" :checked="ckAll" /><text>全选</text>
 					</label>
 				</checkbox-group>
-			</view>
-			<view class="ub">
+			</view> -->
+			<view class="ub cart-mag">
 				<button type="default" size="mini" @click="delAll()" ref="button">管理</button>
 			</view>
 		</view>
@@ -84,11 +84,14 @@
 										<view class="am-blod f32">{{item.title}}</view>
 										<!-- <view class="cart-txt">适用范围：{{item.suitable}}</view> -->
 										<view>单价：
-											<text class="cart-price" v-if="userInfo.c_type == 1">￥{{item.currentprice}}</text>
+											<text class="cart-price" v-if="userInfo.c_type == 1">￥{{item.currentprice}}<text style="display:inline-block;margin-left:10rpx;font-size:26rpx;color:#999">/{{item.unit}}</text></text>
 											<text class="cart-price" v-else-if="userInfo.c_type == 3 && userInfo.c_isview == 1">￥{{item.a_price}}</text>
 											<text class="cart-price f28" v-else="userInfo.c_type == 3 && userInfo.c_isview == 0">协议价</text>
 											<text class="cart-recom" v-if="item.s_is_reco">已推荐</text>
 											<text class="cart-recom" v-if="item.a_id>0">赠</text>
+										</view>
+										<view style="margin-bottom:14rpx;">
+											规格：{{item.uqdescription}}
 										</view>
 										<view class="cart-opt">
 											数量：
@@ -243,9 +246,9 @@
 						if(this_.userInfo.c_type == 3 && this_.userInfo.c_isview == 0){
 							sum_price += res.data[i].s_qty * 0;
 						}else if(this_.userInfo.c_type == 3 && this_.userInfo.c_isview == 1){
-							sum_price += res.data[i].s_qty * res.data[i].a_price;
+							sum_price += res.data[i].s_qty * res.data[i].a_price * res.data[i].unitquantity;
 						}else if(this_.userInfo.c_type == 1){
-							sum_price += res.data[i].s_qty * res.data[i].currentprice;
+							sum_price += res.data[i].s_qty * res.data[i].currentprice * res.data[i].unitquantity;
 						}
 						//sum_price += res.data[i].s_qty * res.data[i].currentprice;
 						sum_num += res.data[i].s_qty;
@@ -267,9 +270,9 @@
 				if(this_.userInfo.c_type == 3 && this_.userInfo.c_isview == 0){
 					new_price = 0;
 				}else if(this_.userInfo.c_type == 3 && this_.userInfo.c_isview == 1){
-					new_price = item.a_price;
+					new_price = item.a_price*item.unitquantity;
 				}else if(this_.userInfo.c_type == 1){
-					new_price = item.currentprice;
+					new_price = item.currentprice*item.unitquantity;
 				}
 				
 				if(type=='add'){
@@ -515,5 +518,11 @@ uni-button:after{
 }
 .cart-cust-btn .am-btn{
 	padding:15rpx 0;
+}
+.cart-mag{
+	position: absolute;
+	top:-70rpx;
+	right:25rpx;
+	z-index: 999;
 }
 </style>

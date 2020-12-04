@@ -100,7 +100,7 @@
 		<view class="uni-padding-wrap">
 			<view class="page-section swiper">
 				<view class="page-section-spacing">
-					<swiper class="swiper index-slide" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" indicator-color="#999" indicator-active-color="#14489b">
+					<swiper class="swiper index-slide" circular="false" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" indicator-color="#999" indicator-active-color="#14489b">
 						<swiper-item>
 							<view class="swiper-item"><image src="../../../static/images/img_index_slide01.jpg" mode="scaleToFill" class="index_slidImg"></image></view>
 						</swiper-item>
