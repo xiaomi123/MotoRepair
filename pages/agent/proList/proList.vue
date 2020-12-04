@@ -32,7 +32,10 @@
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
 					<view class="index-uinn">
 						<text class="index-title">{{item.title}}</text>
-						<view>售价:<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text></view>
+						<view class="index-txt"><text>品牌:{{item.suitable}}</text></view>
+						<view class="">会员价：<text class="am-text-danger">￥</text><text class="index-price">{{item.currentpriceb}}</text></view>
+						<view class="">非会员价：<text class="f24 am-text-warning">￥</text><text class="index-price f28 am-text-warning">{{item.currentprice}}</text></view>
+						<view class="">车主价格：<text class="f24 am-text-primary">￥</text><text class="index-price f28 am-text-primary">{{item.currentpricec}}</text></view>
 						<!-- <view class="index-txt">
 							<text>型号:{{item.productmodel}}</text>
 						</view>

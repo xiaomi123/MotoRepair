@@ -247,7 +247,7 @@
 						
 						this_.jihuoPlant.splice(2,0,{url : '../../../static/images/icon_jh.png',text : '进货详情',badge : '',linkUrl : '../myorder/myorder'});
 						//this_.jihuoPlant.splice(3,0,{url : '../../../static/images/icon_zt.png',text : '在途',badge : '',linkUrl : '../stock/stock?type=1'});
-						this_.jihuoPlant.splice(4,0,{url : '../../../static/images/icon_yd.png',text : '预定',badge : '',linkUrl : '../booking/booking'});
+						this_.jihuoPlant.splice(4,0,{url : '../../../static/images/menu1.png',text : '预定',badge : '',linkUrl : '../booking/booking'});
 						this_.jihuoPlant.splice(5,0,{url : '../../../static/images/icon_yd.png',text : '已取消',badge : '',linkUrl : '../cancel/cancel'})
 					}
 					this_.qrcodeText = 'http://gao.vocen.cn:8044/#/pages/QRCode?ma001='+ res.data[0].c_ma001 +'&type=1&m_id='+ res.data[0].c_m_id+'&action=';

@@ -51,6 +51,7 @@
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
 					<view class="index-uinn">
 						<text class="index-title">{{item.title}}</text>
+						<view class="index-txt"><text>品牌:{{item.suitable}}</text></view>
 						<!-- <view class="index-txt">
 							<text>型号:{{item.productmodel}}</text>
 						</view>

@@ -131,6 +131,7 @@
 				<view class="index-list" v-for="(item,index) in proList" @click="toDetail(item)">
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
 					<text class="index-title">{{item.title}}</text>
+					<view class="index-txt"><text>品牌:{{item.suitable}}</text></view>
 					<!-- <view>
 						<text>型号:{{item.productmodel}}</text>
 					</view>
@@ -190,6 +191,9 @@
 		},
 		onLoad(option) {
 			this.tag = option.tag;
+			uni.setNavigationBarTitle({
+				title: option.tag != '' ? '展品展示' : '游客首页'
+			})
 			//读取存储数据
 			this.getData();
 			//获取地址

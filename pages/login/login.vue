@@ -134,9 +134,9 @@
 						});
 					}else{
 						//用户信息为空
-						// uni.reLaunch({
-						// 	url: '../tourist/index/index'
-						// });
+						uni.reLaunch({
+							url: '../tourist/index/index'
+						});
 					}  
                 },error => {
 					console.log(error);

@@ -70,7 +70,7 @@
 							<view>
 								<!-- 售价:<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text> -->
 								进价:<text class="am-text-danger">￥</text><text class="index-price">{{item.inprice}}</text><text style="color:#999">/{{item.unit}}</text>
-								<view>规格:{{item.uqdescription}}</view>
+								<view v-if="!$check.isEmpty(item.uqdescription)">规格:{{item.uqdescription}}</view>
 							</view>
 							<!-- <view>我的库存:{{item.storemin}}</view> -->
 						</view>
@@ -115,7 +115,7 @@
 							<view>
 								<!-- 售价:<text class="am-text-danger">￥</text><text class="index-price">{{item01.currentprice}}</text>进价:{{item01.inprice}} -->
 								进价:<text class="am-text-danger">￥</text><text class="index-price">{{item01.inprice}}</text>
-								<view>规格:{{item.uqdescription}}</view>
+								<view v-if="!$check.isEmpty(item.uqdescription)">规格:{{item.uqdescription}}</view>
 							</view>
 							<!-- <view>我的库存:{{item01.storemin}}</view> -->
 						</view>
