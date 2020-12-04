@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="watch-main">
 		<!-- <view class="wapper">
 			<view class="desc">您还未关注我们江陵动力发动机公众号，请扫描下面二维码添加关注(测试公众号)</view>
 			<image class="qcorde" src="../../static/images/gzh.jpg"></image>
