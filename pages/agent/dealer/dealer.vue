@@ -172,7 +172,7 @@
 			qrCode(ma001,mId,mName){
 				let this_ = this;
 				this_.dealerName = mName;
-				this_.qrcodeText = 'http://gao.vocen.cn:8044/#/pages/QRCode?ma001='+ ma001 +'&type='+this_.dealerInfo.m_type+'&m_id=' + mId ;
+				this_.qrcodeText = 'http://gao.vocen.cn:8044/#/pages/QRCode?ma001='+ ma001 +'&type='+this_.dealerInfo.m_type+'&m_id=' + mId + '&action=' ;
 				uni.showLoading({
 					title: '二维码生成中',
 					mask: true
