@@ -223,7 +223,7 @@
 		onLoad(option) {
 			this.tag = option.tag;
 			uni.setNavigationBarTitle({
-				title: option.tag != '' ? '展品展示' : '游客首页'
+				title: option.tag != '' ? '产品展示' : '游客首页'
 			})
 			//读取存储数据
 			this.getData();
