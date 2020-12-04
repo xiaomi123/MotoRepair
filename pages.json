@@ -357,7 +357,9 @@
         }
         ,{
             "path" : "pages/watch/watch",
-            "style" : {}
+            "style" : {
+				"navigationStyle":"custom"
+			}
         }
         ,{
             "path" : "pages/agent/cancel/cancel",

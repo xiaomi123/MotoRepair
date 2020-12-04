@@ -1,7 +1,7 @@
 <template>
 	<view class="index_container">
 		<!-- 搜索内容开始 -->
-		<view class="index-search" style="top:0">
+		<view class="index-search" style="top:0;z-index:2">
 			<view class="index-search-cont">
 				<!-- <button class="index-search-btn" @click="filter()">机型目录</button> -->
 				<button class="index-search-btn">品牌目录</button>

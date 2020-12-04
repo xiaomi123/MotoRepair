@@ -7,7 +7,7 @@
 				<input class="index-search-txt index-search-agent" confirm-type="search" v-model="keywords" placeholder="请输入"  @confirm="search"  />
 			</view>
 		</view> -->
-		<view class="index-search" style="top:0">
+		<view class="index-search" style="top:0;z-index:2">
 			<view class="index-search-cont">
 				<!-- <button class="index-search-btn" @click="filter()">机型目录</button> -->
 				<button class="index-search-btn">品牌目录</button>
