@@ -42,7 +42,7 @@
 						<view class="detail-table">
 							<view class="detail-tr no-ubb">
 								<view class="detail-td">商品名称</view>
-								<view class="detail-td number">数量</view>
+								<view class="detail-td">数量</view>
 								<view class="detail-td">单价</view>
 								<!-- <view class="detail-td codenum">发动机号</view> -->
 								<view class="detail-td">规格</view>
@@ -50,17 +50,17 @@
 							</view>
 							<view class="detail-tr ub-ac" v-for="list in items.item">
 								<view class="detail-td">{{list.title}}</view>
-								<view class="detail-td number">{{list.i_qty}}/件</view>
-								<view class="detail-td price" v-if="userInfo.c_type == 1">{{parseInt(list.currentprice)}}/{{list.unit}}</view>
-								<view class="detail-td price" v-else-if="userInfo.c_type == 3 && userInfo.c_isview == 0">协议价</view>
-								<view class="detail-td price" v-else-if="userInfo.c_type == 3 && userInfo.c_isview == 1">{{parseInt(list.a_price)}}</view>
+								<view class="detail-td">{{list.i_qty}}/件</view>
+								<view class="detail-td" v-if="userInfo.c_type == 1">{{parseInt(list.currentprice)}}/{{list.unit}}</view>
+								<!-- <view class="detail-td" v-else-if="userInfo.c_type == 3 && userInfo.c_isview == 0">协议价</view>
+								<view class="detail-td" v-else-if="userInfo.c_type == 3 && userInfo.c_isview == 1">{{parseInt(list.a_price)}}</view> -->
 								<!-- <view class="detail-td codenum" v-if="list.code !=''&&list.code !=null">
 									<view class="td-br" v-for="codList in list.code.split(',')">
 										{{codList}}
 									</view>
 								</view>
 								<view class="detail-td codenum" v-else></view> -->
-								<view class="detail-td" v-if="!$check.isEmpty(list.uqdescription)">{{list.uqdescription}}</view>
+								<view class="detail-td">{{list.uqdescription}}</view>
 								<view class="detail-td">{{list.unitquantity*list.i_qty*parseInt(list.currentprice)}}</view>
 							</view> 
 							<view class="detail-tr">

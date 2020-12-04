@@ -12,7 +12,7 @@
 					<view>
 						<view v-for="cangku in priview" style="margin-bottom: 20rpx;">
 							<text class="stock-name" v-if="cangku.name == '预定提醒'" style="background-color: #ff7f50;">缺货产生的预订单</text>
-							<text class="stock-name" v-else style="background-color: #6dacf0;">{{cangku.name}}进货单</text>
+							<text class="stock-name" v-else style="background-color: #6dacf0;">{{userInfo.storage=='130102'?'工厂直发':cangku.name}}进货单</text>
 							<view class="detail-table">
 								<view class="detail-tr no-ubb">
 									<view class="detail-td" style="width:25%">产品编号</view>

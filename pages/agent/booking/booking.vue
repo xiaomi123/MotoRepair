@@ -75,7 +75,7 @@
 					<view class="stock-item">
 						<view class="custpro-cont" v-for="(stock, index) in item.stockList" :key="index">
 							<!-- <view class="custpro-item">{{stock.name}}:{{stock.storage}}</view> -->
-							<view class="custpro-item">库存:{{stock.storage}}</view>
+							<view class="custpro-item">厂家库存:{{stock.storage}}</view>
 							<view class="custpro-cart" v-if="stock.storage > 0">
 								<uni-number-box :min="0" :max="stock.storage" :value="stock.boot_qty >= stock.storage ? stock.storage : stock.boot_qty" :disabled="isDisabled" @change="changeCart($event,index,item.stockList)" :height="24" :width="90"></uni-number-box>
 							</view>
