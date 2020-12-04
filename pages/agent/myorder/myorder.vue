@@ -52,11 +52,12 @@
 		<view :style="{marginTop:`${marginTop}px`}">
 			<view class="order-list-item ub-box-shadow" v-for="(items,index) in orderList">
 				<view class="list-item ub ub-ac am-bg-active am-text-white order-uinn">
-					<view class="ub ub-f1">发货仓库：{{items.o_storage}}</view>
+					<!-- <view class="ub ub-f1">发货仓库：{{items.o_storage}}</view> -->
+					<view class="ub ub-f1">订单号：{{items.o_code}}</view>
 					<view class="ub">{{items.o_state}}</view>
 				</view>
 				<view class="order-uinn">
-					<view class="list-item umar-b"><text class="am-text-99">订单号：</text>{{items.o_code}}</view>
+					<!-- <view class="list-item umar-b"><text class="am-text-99">订单号：</text>{{items.o_code}}</view> -->
 					<view class="list-item umar-b"><text class="am-text-99">备注：</text>{{items.o_note}}</view>
 					<view style="margin-top: 8rpx;">
 						<view class="detail-table" v-if="items.item.length>0">
@@ -64,16 +65,22 @@
 								<view class="detail-td">商品名称</view>
 								<view class="detail-td number">数量</view>
 								<view class="detail-td price">单价</view>
+								<view class="detail-td">规格</view>
+								<view class="detail-td">小计</view>
 							</view>
 							<view class="detail-tr ub-ac" v-for="list in items.item.slice(0, 5)" v-if="!items.isMore">
 								<view class="detail-td">{{list.title}}</view>
 								<view class="detail-td number">{{list.i_qty}}</view>
 								<view class="detail-td price">{{parseInt(list.i_price)}}</view>
+								<view class="detail-td">{{list.uqdescription}}</view>
+								<view class="detail-td">{{$check.isEmpty(list.unitquantity) ? ist.i_qty*list.i_price : list.unitquantity*list.i_qty*list.i_price}}</view>
 							</view> 
 							<view class="detail-tr ub-ac" v-for="list in items.item" v-if="items.isMore">
 								<view class="detail-td">{{list.title}}</view>
 								<view class="detail-td number">{{list.i_qty}}</view>
 								<view class="detail-td price">{{parseInt(list.i_price)}}</view>
+								<view class="detail-td">{{list.uqdescription}}</view>
+								<view class="detail-td">{{$check.isEmpty(list.unitquantity) ? ist.i_qty*list.i_price : list.unitquantity*list.i_qty*list.i_price}}</view>
 							</view> 
 							<view class="detail-tr" v-if="items.isMore">
 								<view class="detail-td" style="width: 50%;">合计：<text class="am-blod">{{items.o_qty}}</text></view>
@@ -218,7 +225,12 @@
 						}
 						let item = res.data.rows[i].item;
 						for(let m = 0; m < item.length; m++){
-							res.data.rows[i].priceTotal += item[m].i_qty * item[m].i_price;
+							if(this_.$check.isEmpty(item[m].unitquantity)){
+								res.data.rows[i].priceTotal += item[m].i_qty * item[m].i_price;
+							}else{
+								res.data.rows[i].priceTotal += item[m].i_qty * item[m].unitquantity * item[m].i_price;
+							}
+							
 						}
 					}
 					//请求成功

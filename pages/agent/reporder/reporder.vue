@@ -85,7 +85,7 @@
 							</view> 
 							<view class="detail-tr">
 								<view class="detail-td" style="width: 50%;">合计：<text class="am-blod">{{items.s_qty}}</text></view>
-								<view class="detail-td" style="width: 50%;">总价：<text class="am-blod">{{items.priceTotal}}</text></view>
+								<view class="detail-td" style="width: 50%;">总金额：<text class="am-blod">{{items.priceTotal}}</text></view>
 							</view>
 						</view>
 					</view>
@@ -519,35 +519,46 @@
 			//确认发货
 			orderOk(list, index) {
 				let this_ = this;
-				uni.showLoading();
-				this_.$http.httpTokenRequest({
-					url: this_.$api.CustSendOrder + '?s_id=' + list.s_id,
-					method: 'GET',
-					data: {},
-				}).then(res => {
-					uni.hideLoading();
-					if(res.data.State){
-						uni.showModal({
-							title: '温馨提示',
-							content: res.data.Message,
-							success: function (res) {
-								if (res.confirm) {
-									this_.confirmOrder(list.s_c_id,list.s_id,list.s_code,list.c_tel,list.s_c_nickname,index);
-								} else if (res.cancel) {
-									//console.log('用户点击取消');
-								}
-							}
-						});
-					}else{
-						uni.showToast({
-							icon : 'none',
-							title : "未扫描绑定发动机识别码,请先扫描出库",
-							duration:1500
-						});
-					}
+				// uni.showLoading();
+				// this_.$http.httpTokenRequest({
+				// 	url: this_.$api.CustSendOrder + '?s_id=' + list.s_id,
+				// 	method: 'GET',
+				// 	data: {},
+				// }).then(res => {
+				// 	uni.hideLoading();
+				// 	if(res.data.State){
+				// 		uni.showModal({
+				// 			title: '温馨提示',
+				// 			content: res.data.Message,
+				// 			success: function (res) {
+				// 				if (res.confirm) {
+				// 					this_.confirmOrder(list.s_c_id,list.s_id,list.s_code,list.c_tel,list.s_c_nickname,index);
+				// 				} else if (res.cancel) {
+				// 					//console.log('用户点击取消');
+				// 				}
+				// 			}
+				// 		});
+				// 	}else{
+				// 		uni.showToast({
+				// 			icon : 'none',
+				// 			title : "未扫描绑定发动机识别码,请先扫描出库",
+				// 			duration:1500
+				// 		});
+				// 	}
 					
-				}, error => {
-					console.log(error);
+				// }, error => {
+				// 	console.log(error);
+				// });
+				uni.showModal({
+					title: '温馨提示',
+					content: "是否确认收货？",
+					success: function (res) {
+						if (res.confirm) {
+							this_.confirmOrder(list.s_c_id,list.s_id,list.s_code,list.c_tel,list.s_c_nickname,index);
+						} else if (res.cancel) {
+							//console.log('用户点击取消');
+						}
+					}
 				});
 				
 				

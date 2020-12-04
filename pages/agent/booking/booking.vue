@@ -29,7 +29,7 @@
 								</view> 
 								<view class="detail-tr" style="background-color: #EEEEEE;">
 									<view class="detail-td" style="width: 50%;">合计：<text class="am-blod">{{cangku.nums}}</text></view>
-									<view class="detail-td" style="width: 50%;">总价：<text class="am-blod">{{cangku.money}}</text></view>
+									<view class="detail-td" style="width: 50%;">总金额：<text class="am-blod">{{cangku.money}}</text></view>
 								</view>
 							</view>
 						</view>
@@ -62,16 +62,20 @@
 						<view class="">
 							<text class="custpro-title">{{item.title}}</text>
 							<view>
-								售价:<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text>进价:{{item.inprice}}
+								<!-- 售价:<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text>进价:{{item.inprice}} -->
+								进价:<text class="am-text-danger">￥</text><text class="index-price">{{item.inprice}}</text>
+								<view v-if="!$check.isEmpty(item.suitable)">品牌:{{item.suitable}}</view>
+								<view v-if="!$check.isEmpty(item.uqdescription)">规格:{{item.uqdescription}}</view>
 							</view>
-							<view>我的库存:{{item.storemin}}</view>
+							<!-- <view>我的库存:{{item.storemin}}</view> -->
 						</view>
 					</view>
 				</view>
 				<view class="stock-info">
 					<view class="stock-item">
 						<view class="custpro-cont" v-for="(stock, index) in item.stockList" :key="index">
-							<view class="custpro-item">{{stock.name}}:{{stock.storage}}</view>
+							<!-- <view class="custpro-item">{{stock.name}}:{{stock.storage}}</view> -->
+							<view class="custpro-item">库存:{{stock.storage}}</view>
 							<view class="custpro-cart" v-if="stock.storage > 0">
 								<uni-number-box :min="0" :max="stock.storage" :value="stock.boot_qty >= stock.storage ? stock.storage : stock.boot_qty" :disabled="isDisabled" @change="changeCart($event,index,item.stockList)" :height="24" :width="90"></uni-number-box>
 							</view>

@@ -65,7 +65,7 @@
 							</view> 
 							<view class="detail-tr">
 								<view class="detail-td" style="width: 50%;">合计：<text class="am-blod">{{items.s_qty}}</text></view>
-								<view class="detail-td" style="width: 50%;">总价：<text class="am-blod">{{items.priceTotal}}</text></view>
+								<view class="detail-td" style="width: 50%;">总金额：<text class="am-blod">{{items.priceTotal}}</text></view>
 							</view>
 						</view>
 					</view>

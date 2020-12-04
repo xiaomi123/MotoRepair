@@ -18,17 +18,17 @@
 									<view class="detail-td" style="width:25%">产品编号</view>
 									<view class="detail-td" style="width:40%">名称</view>
 									<view class="detail-td" style="width:15%">数量</view>
-									<view class="detail-td" style="width:20%">单价</view>
+									<view class="detail-td" style="width:20%">小计</view>
 								</view>
 								<view class="detail-tr ub-ac" v-for="data in cangku.list">
 									<view class="detail-td" style="width:25%">{{data.erpcode}}</view>
 									<view class="detail-td" style="width:40%">{{data.name}}</view>
-									<view class="detail-td" style="width:15%">{{data.qty}}</view>
-									<view class="detail-td" style="width:20%">{{data.price}}</view>
+									<view class="detail-td" style="width:15%">{{data.qty}}/件</view>
+									<view class="detail-td" style="width:20%">{{data.price*data.qty*data.unitquantity}}</view>
 								</view> 
 								<view class="detail-tr" style="background-color: #EEEEEE;">
 									<view class="detail-td" style="width: 50%;">合计：<text class="am-blod">{{cangku.nums}}</text></view>
-									<view class="detail-td" style="width: 50%;">总价：<text class="am-blod">{{cangku.money}}</text></view>
+									<view class="detail-td" style="width: 50%;">总金额：<text class="am-blod">{{cangku.money}}</text></view>
 								</view>
 							</view>
 						</view>
@@ -70,6 +70,7 @@
 							<view>
 								<!-- 售价:<text class="am-text-danger">￥</text><text class="index-price">{{item.currentprice}}</text> -->
 								进价:<text class="am-text-danger">￥</text><text class="index-price">{{item.inprice}}</text><text style="color:#999">/{{item.unit}}</text>
+								<view v-if="!$check.isEmpty(item.suitable)">品牌:{{item.suitable}}</view>
 								<view v-if="!$check.isEmpty(item.uqdescription)">规格:{{item.uqdescription}}</view>
 							</view>
 							<!-- <view>我的库存:{{item.storemin}}</view> -->
@@ -80,7 +81,8 @@
 					<view class="stock-item">
 						<block v-if="item.stockList.length == 0">
 							<view class="custpro-cont" v-for="(stock, index) in userInfo.mc002.split(',')" :key="index">
-								<view class="custpro-item">{{stock}}库存:0</view>
+								<!-- <view class="custpro-item">{{stock}}库存:0</view> -->
+								<view class="custpro-item">厂家库存:0</view>
 								<view class="custpro-cart">
 									<uni-number-box :min="0" value="0" @change="changeCart1($event,index,item)" :height="24" :width="90"></uni-number-box>
 									<view class="booking-btn"><button type="warn" size="mini" @click="remind1(item,index)">预订提醒</button></view>
@@ -89,7 +91,8 @@
 						</block>
 						<block v-else>
 							<view class="custpro-cont" v-for="(stock, index) in item.stockList" :key="index">
-								<view class="custpro-item">{{stock.name}}库存:{{stock.storage}}</view>
+								<!-- <view class="custpro-item">{{stock.name}}库存:{{stock.storage}}</view> -->
+								<view class="custpro-item">厂家库存:{{stock.storage}}</view>
 								<view class="custpro-cart" v-if="stock.storage > 0">
 									<uni-number-box :min="0" :max="stock.storage/item.unitquantity" :value="stock.s_qty" @change="changeCart($event,index,stock,item)" :height="24" :width="90"></uni-number-box>
 								</view>
@@ -115,6 +118,7 @@
 							<view>
 								<!-- 售价:<text class="am-text-danger">￥</text><text class="index-price">{{item01.currentprice}}</text>进价:{{item01.inprice}} -->
 								进价:<text class="am-text-danger">￥</text><text class="index-price">{{item01.inprice}}</text>
+								<view v-if="!$check.isEmpty(item.suitable)">品牌:{{item.suitable}}</view>
 								<view v-if="!$check.isEmpty(item.uqdescription)">规格:{{item.uqdescription}}</view>
 							</view>
 							<!-- <view>我的库存:{{item01.storemin}}</view> -->
@@ -125,7 +129,8 @@
 					<view class="stock-item">
 						<block v-if="item01.stockList.length == 0">
 							<view class="custpro-cont" v-for="(stock, index03) in userInfo.mc002.split(',')" :key="index03">
-								<view class="custpro-item">{{stock}}库存:0</view>
+								<!-- <view class="custpro-item">{{stock}}库存:0</view> -->
+								<view class="custpro-item">厂家库存:0</view>
 								<view class="custpro-cart">
 									<uni-number-box :min="0" value="0" @change="changeCart1($event,index03,item01)" :height="24" :width="90"></uni-number-box>
 									<view class="booking-btn"><button type="warn" size="mini" @click="remind1(item,index)">预订提醒</button></view>
@@ -134,7 +139,8 @@
 						</block>
 						<block v-else>
 							<view class="custpro-cont" v-for="(stock, index03) in item01.stockList" :key="index03">
-								<view class="custpro-item">{{stock.name}}库存:{{stock.storage}}</view>
+								<!-- <view class="custpro-item">{{stock.name}}库存:{{stock.storage}}</view> -->
+								<view class="custpro-item">厂家库存:{{stock.storage}}</view>
 								<view class="custpro-cart" v-if="stock.storage > 0">
 									<uni-number-box :min="0" :max="stock.storage/item01.unitquantity" :value="stock.s_qty" @change="changeCart($event,index03,stock,item01)" :height="24" :width="90"></uni-number-box>
 								</view>
@@ -522,7 +528,10 @@
 										mc002:this_.proList[i].stockList[m].mc002,
 										mb001:this_.proList[i].stockList[m].mb001,
 										qty:this_.proList[i].stockList[m].s_qty, 
-										price: this_.proList[i].inprice
+										price: this_.proList[i].inprice,
+										unitquantity:this_.proList[i].unitquantity,
+										unit:this_.proList[i].unit,
+										uqdescription:this_.proList[i].uqdescription
 									});
 								}
 								
@@ -533,7 +542,10 @@
 									qty : this_.proList[i].stockList[m].s_qty,
 									price : this_.proList[i].inprice,
 									storageName : this_.proList[i].stockList[m].bname,
-									storage : this_.proList[i].zstorage
+									storage : this_.proList[i].zstorage,
+									unitquantity:this_.proList[i].unitquantity,
+									unit:this_.proList[i].unit,
+									uqdescription:this_.proList[i].uqdescription
 								};
 								oldData.push(a);
 								// 把源数据先变成目标数据的规则
@@ -548,7 +560,10 @@
 										name : el.name,
 										qty : el.qty,
 										price : el.price,
-										storage : el.storage
+										storage : el.storage,
+										unitquantity:el.unitquantity,
+										unit:el.unit,
+										uqdescription:el.uqdescription
 									}
 									oldObj.list.push(listObj)
 									oldDataRule.push(oldObj)
@@ -580,7 +595,7 @@
 									this_.$set(this_.priview[k], 'money', 0);
 									for(let j = 0; j < this_.priview[k].list.length; j++){
 										this_.priview[k].nums = this_.priview[k].nums + parseInt(this_.priview[k].list[j].qty);
-										this_.priview[k].money = this_.priview[k].money + this_.priview[k].list[j].qty * this_.priview[k].list[j].price;
+										this_.priview[k].money = this_.priview[k].money + this_.priview[k].list[j].qty * this_.priview[k].list[j].unitquantity * this_.priview[k].list[j].price;
 									}
 								}
 								// console.log("-----------排序后----------------");

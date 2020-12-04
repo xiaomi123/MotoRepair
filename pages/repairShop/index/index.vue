@@ -107,15 +107,18 @@
 		<view class="index-content">
 			<view class="ub f28 shopList">
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(-1);">
-					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
+					<image v-if="isShow == -1" class="icon-img" src="../../../static/images/icon_all_acitve.png" mode="widthFix"></image>
+					<image v-else class="icon-img" src="../../../static/images/icon_all.png" mode="widthFix"></image>
 					<text :style="{color: isShow == -1 ? '#3079F3' : '#333333'}">全部</text>
 				</view>
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(0);">
-					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
+					<image v-if="isShow == 0" class="icon-img" src="../../../static/images/icon_sale_active.png" mode="widthFix"></image>
+					<image v-else class="icon-img" src="../../../static/images/icon_sale.png" mode="widthFix"></image>
 					<text :style="{color: isShow == 0 ? '#3079F3' : '#333333'}">在售产品</text>
 				</view>
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(1);">
-					<image class="icon-img" src="../../../static/images/zaishoujixing.png" mode="widthFix"></image>
+					<image v-if="isShow == 1" class="icon-img" src="../../../static/images/icon_presale_active.png" mode="widthFix"></image>
+					<image v-else class="icon-img" src="../../../static/images/icon_presale.png" mode="widthFix"></image>
 					<text :style="{color: isShow == 1 ? '#3079F3' : '#333333'}">预售产品</text>
 				</view>
 			</view>
@@ -280,10 +283,10 @@
 				if(t == 0){
 					this_.getData();
 				}else if(t == 1){
-					this.getBookProduct();
+					this_.getBookProduct();
 				}else if(t == -1){
 					this_.getData();
-					this.getBookProduct();
+					this_.getBookProduct();
 				}
 			},
 			//获取首页产品列表
@@ -490,6 +493,7 @@
 				this.p++;
 				this.status = 'loading';
 				this.getData();
+				this.getBookProduct();
 			}else{
 				this.status = 'noMore';
 			}
