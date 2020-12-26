@@ -74,7 +74,7 @@
 					<view class="ub am-btn-panel ub-ac">
 						<view class="ub ub-f1 am-text-99">下单时间：{{items.s_create_time}}</view>
 						<view class="ub ub-pe">
-							<!-- <button class="f24 am-btn-primary" @click="receiptOk(items,index)" v-if="tabIndex == 1">确认收货</button> -->
+							<button class="f24 am-btn-primary" @click="receiptOk(items,index)" v-if="tabIndex == 1">确认收货</button>
 							<!-- <button class="f24" @click="orderCancle(item)" v-if="tabIndex == 0">取消订单</button> -->
 						</view>
 					</view>
@@ -298,15 +298,20 @@
 								if(res.data.State){
 									this_.orderQty();
 									uni.showToast({
-										title:'已确认发货,去个人中心评价可获取100积分奖励～',
+										title:'已确认发货',
 										duration:3000
 									});
+									
+									/*uni.showToast({
+										title:'已确认发货,去个人中心评价可获取100积分奖励～',
+										duration:3000
+									});*/
 									this_.orderList.splice(index,1);
-									setTimeout(function(){
+									/*setTimeout(function(){
 										uni.navigateTo({
 											url:'../evalList/evalList?id=0'
 										})
-									},3000)
+									},3000)*/
 								}
 								// uni.showToast({
 								// 	icon : 'none',

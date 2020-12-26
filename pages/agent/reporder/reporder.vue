@@ -551,7 +551,7 @@
 				// });
 				uni.showModal({
 					title: '温馨提示',
-					content: "是否确认收货？",
+					content: "是否确认发货？",
 					success: function (res) {
 						if (res.confirm) {
 							this_.confirmOrder(list.s_c_id,list.s_id,list.s_code,list.c_tel,list.s_c_nickname,index);
