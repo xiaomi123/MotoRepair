@@ -129,24 +129,25 @@
 		</view> -->
 		<view class="index-content">
 			<view class="ub f28 shopList">
-				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(-1);">
-					<image v-if="isShow == -1" class="icon-img" src="../../../static/images/icon_all_acitve.png" mode="widthFix"></image>
-					<image v-else class="icon-img" src="../../../static/images/icon_all.png" mode="widthFix"></image>
-					<text :style="{color: isShow == -1 ? '#3079F3' : '#333333'}">全部</text>
-				</view>
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(0);">
-					<image v-if="isShow == 0" class="icon-img" src="../../../static/images/icon_sale_active.png" mode="widthFix"></image>
-					<image v-else class="icon-img" src="../../../static/images/icon_sale.png" mode="widthFix"></image>
-					<text :style="{color: isShow == 0 ? '#3079F3' : '#333333'}">在售产品</text>
+					<image v-if="isShow == 0" class="icon-img" src="../../../static/images/icon_all_acitve.png" mode="widthFix"></image>
+					<image v-else class="icon-img" src="../../../static/images/icon_all.png" mode="widthFix"></image>
+					<text :style="{color: isShow == 0 ? '#3079F3' : '#333333'}">全部</text>
 				</view>
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(1);">
-					<image v-if="isShow == 1" class="icon-img" src="../../../static/images/icon_presale_active.png" mode="widthFix"></image>
+					<image v-if="isShow == 1" class="icon-img" src="../../../static/images/icon_sale_active.png" mode="widthFix"></image>
+					<image v-else class="icon-img" src="../../../static/images/icon_sale.png" mode="widthFix"></image>
+					<text :style="{color: isShow == 1 ? '#3079F3' : '#333333'}">在售产品</text>
+				</view>
+				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(2);">
+					<image v-if="isShow == 2" class="icon-img" src="../../../static/images/icon_presale_active.png" mode="widthFix"></image>
 					<image v-else class="icon-img" src="../../../static/images/icon_presale.png" mode="widthFix"></image>
-					<text :style="{color: isShow == 1 ? '#3079F3' : '#333333'}">预售产品</text>
+					<text :style="{color: isShow == 2 ? '#3079F3' : '#333333'}">预售产品</text>
 				</view>
 			</view>
-			<view class="index-product" v-if="isShow == 0 || isShow == -1">
-				<view class="index-list" v-for="(item,index) in proList" @click="toDetail(item)">
+			<view class="index-product">
+				<view :class="[item.state == 2 ? 'index-list index-ys' : 'index-list']" v-for="(item,index) in proList" @click="toDetail(item)">
+					<image v-if="item.state == 2" class="icon-img index-dp" src="../../../static/images/hotIcon.png" mode="widthFix"></image>
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
 					<view class="index-uinn">
 						<text class="index-title">{{item.title}}</text>
@@ -154,9 +155,12 @@
 							<text>原车代码:{{item.productmodel}}</text>
 						</view> -->
 						<view class="index-txt"><text>品牌:{{item.suitable}}</text></view>
-						<view class="">会员价：<text class="am-text-danger">￥</text><text class="index-price">{{item.currentpriceb}}</text></view>
-						<view class="">非会员价：<text class="f24 am-text-warning">￥</text><text class="index-price f28 am-text-warning">{{item.currentprice}}</text></view>
-						<view class="">车主价格：<text class="f24 am-text-primary">￥</text><text class="index-price f28 am-text-primary">{{item.currentpricec}}</text></view>
+						<!-- 判断在售预售2为预售 -->
+						<view v-if="item.state!=2">
+							<view class="">会员价：<text class="am-text-danger">￥</text><text class="index-price">{{item.currentpriceb}}</text></view>
+							<view class="">非会员价：<text class="f24 am-text-warning">￥</text><text class="index-price f28 am-text-warning">{{item.currentprice}}</text></view>
+							<view class="">车主价格：<text class="f24 am-text-primary">￥</text><text class="index-price f28 am-text-primary">{{item.currentpricec}}</text></view>
+						</view>
 						<!-- <view class="index_collect ub f28 ub-ac">
 							<text class="ub am-blod am-text-danger" v-if="item.a_id > 0">赠</text>
 							<view class="ub ub-f1 ub-pe">
@@ -168,20 +172,20 @@
 				</view>
 			</view>
 			<!-- 预售 -->
-			<view class="index-product" v-if="isShow == 1 || isShow == -1">
+			<!-- <view class="index-product" v-if="isShow == 1 || isShow == -1">
 				<view class="index-list index-ys" v-for="(item,index) in bproList" @click="toDetail(item)">
 					<image class="icon-img index-dp" src="../../../static/images/hotIcon.png" mode="widthFix"></image>
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
 					<view class="index-uinn">
 						<text class="index-title">{{item.title}}</text>
-						<!-- <view class="index-txt">
+						<view class="index-txt">
 							<text>原车代码:{{item.productmodel}}</text>
 						</view>
-						<view class="index-txt"><text>适用车型:{{item.suitable}}</text></view> -->
+						<view class="index-txt"><text>适用车型:{{item.suitable}}</text></view>
 						<view class="index-txt" v-if="!$check.isEmpty(item.suitable)"><text>品牌:{{item.suitable}}</text></view>
 					</view>
 				</view>
-			</view>
+			</view> -->
 			
 		</view>
 		<!-- 上拉加载 start -->
@@ -285,7 +289,7 @@
 				cartList : getApp().globalData.carsType,
 				roleTxt : "",//角色描述
 				tabcolor : "#3079F3",
-				isShow : -1, //产品列表
+				isShow : 0, //产品列表
 			}
 		},
 		onLoad() {
@@ -349,7 +353,7 @@
 					this_.getNewOrder();//代理商新订单数量
 					this_.getNewRepair();//修理厂新增账号
 					//this_.getProduct();//产品列表
-					this_.changeShopType(-1);
+					this_.changeShopType(this_.isShow);
 					this_.getRemindNum(); //到货产品数量
 					
 			    }
@@ -461,14 +465,15 @@
 				let this_ = this;
 				this_.p = 1;
 				this_.isShow = t;
-				if(t == 0){
-					this_.getProduct();
-				}else if(t == 1){
-					this.getBookProduct();
-				}else if(t == -1){
-					this_.getProduct();
-					this_.getBookProduct();
-				}
+				this_.getProduct();
+				// if(t == 0){
+				// 	this_.getProduct();
+				// }else if(t == 1){
+				// 	this.getBookProduct();
+				// }else if(t == -1){
+				// 	this_.getProduct();
+				// 	this_.getBookProduct();
+				// }
 			},
 			//产品列表
 			getProduct(){
@@ -492,7 +497,7 @@
 					url = this_.$api.ProductHome+'?c_id='+ this_.userInfo.c_id + '&c_type='+this_.userInfo.c_type+'&pageindex='+this_.p+'&pagesize='+this_.pageSize;
 				}*/
 				this_.$http.httpTokenRequest({
-					url:this_.$api.ProductHome+'?c_id='+ this_.userInfo.c_id + '&c_type='+this_.userInfo.c_type+'&c_ma001='+this_.userInfo.c_ma001+'&tag='+this_.keywords+'&pageindex='+this_.p+'&pagesize='+this_.pageSize,
+					url:this_.$api.ProductHome+'?c_id='+ this_.userInfo.c_id + '&c_ma001='+this_.userInfo.c_ma001+'&tag='+this_.keywords+'&pageindex='+this_.p+'&pagesize='+this_.pageSize + '&state=' + this_.isShow,
 					method:'GET',
 					data:{},
 				}).then(res => {
@@ -745,15 +750,5 @@
 .shopList .icon-img{
 	width: 42rpx;
 	margin-right: 15rpx;
-}
-.index-ys{
-	position: relative;
-}
-.index-dp{
-	position: absolute;
-	top:0;
-	right:0;
-	width:119rpx;
-	z-index: 1;
 }
 </style>

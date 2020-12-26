@@ -757,3 +757,13 @@
 .login-dialog-zindex{
 	z-index:1011;
 }
+.index-ys{
+	position: relative;
+}
+.index-dp{
+	position: absolute;
+	top:0;
+	right:0;
+	width:119rpx;
+	z-index: 1;
+}

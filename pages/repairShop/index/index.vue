@@ -106,24 +106,25 @@
 		<view class="am-text-center uinn">--产品列表--</view>
 		<view class="index-content">
 			<view class="ub f28 shopList">
-				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(-1);">
-					<image v-if="isShow == -1" class="icon-img" src="../../../static/images/icon_all_acitve.png" mode="widthFix"></image>
-					<image v-else class="icon-img" src="../../../static/images/icon_all.png" mode="widthFix"></image>
-					<text :style="{color: isShow == -1 ? '#3079F3' : '#333333'}">全部</text>
-				</view>
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(0);">
-					<image v-if="isShow == 0" class="icon-img" src="../../../static/images/icon_sale_active.png" mode="widthFix"></image>
-					<image v-else class="icon-img" src="../../../static/images/icon_sale.png" mode="widthFix"></image>
-					<text :style="{color: isShow == 0 ? '#3079F3' : '#333333'}">在售产品</text>
+					<image v-if="isShow == 0" class="icon-img" src="../../../static/images/icon_all_acitve.png" mode="widthFix"></image>
+					<image v-else class="icon-img" src="../../../static/images/icon_all.png" mode="widthFix"></image>
+					<text :style="{color: isShow == 0 ? '#3079F3' : '#333333'}">全部</text>
 				</view>
 				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(1);">
-					<image v-if="isShow == 1" class="icon-img" src="../../../static/images/icon_presale_active.png" mode="widthFix"></image>
+					<image v-if="isShow == 1" class="icon-img" src="../../../static/images/icon_sale_active.png" mode="widthFix"></image>
+					<image v-else class="icon-img" src="../../../static/images/icon_sale.png" mode="widthFix"></image>
+					<text :style="{color: isShow == 1 ? '#3079F3' : '#333333'}">在售产品</text>
+				</view>
+				<view class="ub ub-f1 ub-ac ub-pc" @click="changeShopType(2);">
+					<image v-if="isShow == 2" class="icon-img" src="../../../static/images/icon_presale_active.png" mode="widthFix"></image>
 					<image v-else class="icon-img" src="../../../static/images/icon_presale.png" mode="widthFix"></image>
-					<text :style="{color: isShow == 1 ? '#3079F3' : '#333333'}">预售产品</text>
+					<text :style="{color: isShow == 2 ? '#3079F3' : '#333333'}">预售产品</text>
 				</view>
 			</view>
-			<view class="index-product" v-if="isShow == 0 || isShow == -1">
-				<view class="index-list" v-for="(item,index) in proList" @click="toDetail(item)">
+			<view class="index-product">
+				<view :class="[item.state == 2 ? 'index-list index-ys' : 'index-list']" v-for="(item,index) in proList" @click="toDetail(item)">
+					<image v-if="item.state == 2" class="icon-img index-dp" src="../../../static/images/hotIcon.png" mode="widthFix"></image>
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
 					<view class="index-uinn">
 						<text class="index-title">{{item.title}}</text>
@@ -131,9 +132,12 @@
 							<text>原车代码:{{item.productmodel}}</text>
 						</view> -->
 						<view class="index-txt"><text>品牌:{{item.suitable}}</text></view>
-						<view class="">会员价：<text class="am-text-danger">￥</text><text class="index-price">{{item.currentpriceb}}</text></view>
-						<view class="">非会员价：<text class="f24 am-text-warning">￥</text><text class="index-price f28 am-text-warning">{{item.currentprice}}</text></view>
-						<view class="">车主价格：<text class="f24 am-text-primary">￥</text><text class="index-price f28 am-text-primary">{{item.currentpricec}}</text></view>
+						<!-- 判断在售预售2为预售 -->
+						<view v-if="item.state!=2">
+							<view>会员价：<text class="am-text-danger">￥</text><text class="index-price">{{item.currentpriceb}}</text></view>
+							<view>非会员价：<text class="f24 am-text-warning">￥</text><text class="index-price f28 am-text-warning">{{item.currentprice}}</text></view>
+							<view>车主价格：<text class="f24 am-text-primary">￥</text><text class="index-price f28 am-text-primary">{{item.currentpricec}}</text></view>
+						</view>
 						<!-- <view class="index_collect ub f28 ub-ac">
 							<text class="ub am-blod am-text-danger" v-if="item.a_id > 0">赠</text>
 							<view class="ub ub-f1 ub-pe">
@@ -145,8 +149,9 @@
 				</view>
 			</view>
 			<!-- 预售 -->
-			<view class="index-product" v-if="isShow == 1 || isShow == -1">
+			<!-- <view class="index-product" v-if="isShow == 1 || isShow == -1">
 				<view class="index-list" v-for="(item,index) in bproList" @click="toDetail(item)">
+					<image v-if="item.state == 2" class="icon-img index-dp" src="../../../static/images/hotIcon.png" mode="widthFix"></image>
 					<image :src="$http.imgUrl + item.titlepicurl" mode="widthFix" class="index-listImg"></image>
 					<view class="index-uinn">
 						<text class="index-title">{{item.title}}</text>
@@ -156,7 +161,7 @@
 						<view class="index-txt"><text>适用车型:{{item.suitable}}</text></view>
 					</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
 		<!-- 上拉加载 start -->
 		<uni-load-more :status="status" class="am-umar-tbar"></uni-load-more>
@@ -191,7 +196,7 @@
 				duration: 500,
 				proList:[],
 				bproList:[],//预售产品列表
-				isShow : -1, //产品列表
+				isShow : 0, //产品列表
 				userInfo:{},
 				p:1,
 				pageSize:100,
@@ -267,7 +272,7 @@
 			    success: function (res) {
 					this_.userInfo = res.data[0];
 					//this_.getData();
-					this_.changeShopType(-1);
+					this_.changeShopType(this_.isShow);
 					this_.getHotCart();
 					
 			    }
@@ -280,21 +285,14 @@
 				let this_ = this;
 				this_.p = 1;
 				this_.isShow = t;
-				if(t == 0){
-					this_.getData();
-				}else if(t == 1){
-					this_.getBookProduct();
-				}else if(t == -1){
-					this_.getData();
-					this_.getBookProduct();
-				}
+				this_.getData();
 			},
 			//获取首页产品列表
 			getData(){
 				let this_ = this;
 				uni.showLoading();
 				this_.$http.httpTokenRequest({
-					url:this_.$api.ProductHome+'?c_id='+ this_.userInfo.c_id + '&c_type='+this_.userInfo.c_type+'&tag='+this_.keywords+'&pageindex='+this_.p+'&pagesize='+this_.pageSize,
+					url:this_.$api.ProductHome+'?c_id='+ this_.userInfo.c_id + '&c_ma001='+this_.userInfo.c_ma001+'&tag='+this_.keywords+'&pageindex='+this_.p+'&pagesize='+this_.pageSize + '&state=' + this_.isShow,
 					method:'GET',
 					data:{},
 				}).then(res => {
@@ -493,7 +491,7 @@
 				this.p++;
 				this.status = 'loading';
 				this.getData();
-				this.getBookProduct();
+				//this.getBookProduct();
 			}else{
 				this.status = 'noMore';
 			}
