@@ -111,7 +111,7 @@
 			wxInit() {
 				let this_ = this;
 				let _data = {
-					url: 'http://gao.vocen.cn:8044/',
+					url: 'http://dhzx.htqp.com.cn/',
 				};
 				// 获取微信签名
 				this_.$http.httpTokenRequest({

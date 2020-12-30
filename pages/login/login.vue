@@ -30,7 +30,7 @@
 			this_.openId = option.openid;
 			this_.action = option.action;
 			//http://tiangang.htqp.com.cn:2345/#/?openid=o8L2xxHTyciyNQB-dB7xVXtL5WVY&action=agent/newrepair
-			//http://gao.vocen.cn:8044/#/?openid=oGB5R6gFngIvEhACmX-y7sQWPjQU&action=preview
+			//http://dhzx.htqp.com.cn/#/?openid=oGB5R6gFngIvEhACmX-y7sQWPjQU&action=preview
 			if(!this_.$check.isEmpty(this_.openId)){
 				//根据openid获取用户信息
 				uni.showLoading();

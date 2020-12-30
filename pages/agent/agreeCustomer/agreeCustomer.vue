@@ -194,7 +194,7 @@
 			qrCode(ma001,mId,mName){
 				let this_ = this;
 				this_.dealerName = mName;
-				this_.qrcodeText = 'http://gao.vocen.cn:8044/#/pages/QRCode?ma001='+ ma001 +'&type='+this_.dealerInfo.m_type+'&m_id=' + mId ;
+				this_.qrcodeText = 'http://dhzx.htqp.com.cn/#/pages/QRCode?ma001='+ ma001 +'&type='+this_.dealerInfo.m_type+'&m_id=' + mId ;
 				console.log(this_.qrcodeText);
 				//this_.qrcodeText = 'http://10.0.2.233:8506/#/pages/QRCode?ma001='+ ma001 +'&type='+this_.dealerInfo.m_type+'&m_id=' + mId ;
 				uni.showLoading({

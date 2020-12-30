@@ -250,7 +250,7 @@
 						this_.jihuoPlant.splice(4,0,{url : '../../../static/images/menu1.png',text : '预定',badge : '',linkUrl : '../booking/booking'});
 						this_.jihuoPlant.splice(5,0,{url : '../../../static/images/icon_yd.png',text : '已取消',badge : '',linkUrl : '../cancel/cancel'})
 					}
-					this_.qrcodeText = 'http://gao.vocen.cn:8044/#/pages/QRCode?ma001='+ res.data[0].c_ma001 +'&type=1&m_id='+ res.data[0].c_m_id+'&action=';
+					this_.qrcodeText = 'http://dhzx.htqp.com.cn/#/pages/QRCode?ma001='+ res.data[0].c_ma001 +'&type=1&m_id='+ res.data[0].c_m_id+'&action=';
 					if(this_.userInfo.c_type == '2' || this_.userInfo.c_type == '3' || this_.userInfo.c_type == '4' || this_.userInfo.c_type == '5'){
 						this_.manageList.splice(1,0,{url : '../../../static/images/icon_db.png',text : '调拨明细',badge : '',linkUrl:'../allotList02/allotList02?id=0'});
 						//this_.manageList.splice(2,0,{url : '../../../static/images/icon_kc.png',text : '库存',badge : '',linkUrl : '../stock/stock?type=0'});
